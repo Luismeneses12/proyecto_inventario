@@ -21,9 +21,16 @@ export default function InicioDeseion() {
                 body: JSON.stringify({ correo, contraseña })
             })
             const data = await res.json()
-            console.log(data)
+             if (res.ok) {
+                console.log('Inicio de sesión exitoso:', data);
+                navigate('/bienvenida');
+             }else{
+                alert(data.message|| 'crencial incorrecta')
+             }
             }catch (error) {
             console.error('Error al iniciar sesión:', error)
+            alert('Error al iniciar sesión. Por favor, inténtalo de nuevo.')
+            
         }
     }
 

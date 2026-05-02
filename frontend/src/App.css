@@ -16,7 +16,9 @@
     outline-offset: 2px;
   }
 }
-
+body{
+  min-height: max(884px, 100dvh);
+}
 .hero {
   position: relative;
 
@@ -181,4 +183,33 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+.main-header {
+  background-color: #10db10;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+li{
+  list-style: none;
+  display: inline;
+  padding: 1rem;
+
+}
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-list a:hover {
+  color: #239613;
 }

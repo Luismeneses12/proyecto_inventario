@@ -67,7 +67,7 @@ export default function Usuario() {
                     <button 
                         type='button' 
                         className="btn-link" 
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/inicio-sesion')}
                     >
                         ¿Ya tienes cuenta? Inicia sesión aquí
                     </button>

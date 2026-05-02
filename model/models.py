@@ -28,6 +28,14 @@ class Venta(db.Model):
     cantidad = db.Column(db.Integer, nullable=False)
     total = db.Column(db.Float, nullable=False)
 
- 
+class Recetas(db.Model):
+    __tablename__ = "recetas"
+
+    identificacionRecetas = db.Column(db.Integer, primary_key=True, autoincrement=True)  
+    titulo = db.Column(db.String(100), nullable=False)
+    foto = db.Column(db.String(600), nullable=False)
+    ingredientes = db.Column(db.Text, nullable=False)
+    instrucciones = db.Column(db.Text, nullable=False)
+    
 
 

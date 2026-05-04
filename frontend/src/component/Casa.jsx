@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Casa() {
 
@@ -156,7 +157,7 @@ return (
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
         <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
           <span className="material-symbols-outlined">home</span>
-          <span className="text-[11px] font-medium">Inicio</span>
+          <Link to="/paginaPrincipal" className="text-[11px] font-medium">Inicio</Link>
         </a>
         <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
           <span className="material-symbols-outlined">eco</span>

@@ -8,6 +8,7 @@ import Casa from './component/Casa'
 
 
 import { Routes, Route, Link } from 'react-router-dom'
+import PaginaPrincipal from './component/PaginaPrincipal'
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <li><Link to="/#">producto</Link></li>
             <li><Link to="/#">recetario</Link></li>
             <li><Link to="/inicio-sesion">login</Link></li>
+            
           </ul>
         </nav>
         <main className='content'>
@@ -34,6 +36,8 @@ function App() {
         <Route path="/inicio-sesion" element={<InicioDeseion />} />
         <Route path="/usuario-get" element={<UsuarioGet />} />
         <Route path="/bienvenida" element={<Bienvenida />} />
+        <Route path="/paginaPrincipal" element={< PaginaPrincipal/>}/>
+
       </Routes>
         </main>
       </header>

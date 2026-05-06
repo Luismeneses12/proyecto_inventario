@@ -161,7 +161,8 @@ return (
         </a>
         <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
           <span className="material-symbols-outlined">eco</span>
-          <span className="text-[11px] font-medium">Tienda</span>
+          
+          <Link to="/tienda"  className="text-[11px] font-medium">Tienda</Link>
         </a>
         <a className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1" href="#!">
           <span className="material-symbols-outlined">chat</span>

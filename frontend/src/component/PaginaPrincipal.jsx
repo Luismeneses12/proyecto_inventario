@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function PaginaPrincipal() {
 
@@ -21,19 +22,15 @@ export default function PaginaPrincipal() {
 
 <div className="lg:col-span-5 space-y-md">
 <div className="inline-block py-1 px-4 bg-secondary-container text-on-secondary-container rounded-full text-label-md font-label-md">
-                        Amor en cada bocado
+                        simplemente agucate lo mejor para tu mesa
                     </div>
 <h1 className="font-headline-xl text-headline-xl text-primary leading-tight">
-                        ¿Por qué nos motiva vender aguacates?
+                        ¿lo que nos motiva ?
                     </h1>
 <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                        Llevamos salud a cada hogar a través de una fruta milenaria, cultivada con pasión. Somos el nexo entre el campo y tu mesa.
-                    </p>
+    llegar cada dia a los hogares  a lo que en realidad vale la pena, como estar con tu seres queridos
+                            </p>
 <div className="pt-sm">
-<button className="bg-primary text-on-primary px-lg py-sm rounded-lg font-bold text-label-md hover:opacity-90 transition-all flex items-center gap-2">
-                            Descubre nuestra cosecha
-                            <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-</button>
 </div>
 </div>
 
@@ -56,23 +53,33 @@ export default function PaginaPrincipal() {
 <section className="bg-surface-container py-xl">
 <div className="max-w-container-max mx-auto px-4 md:px-gutter">
 <div className="text-center mb-lg">
-<h2 className="font-headline-lg text-headline-lg text-primary mb-sm">Nuestra Esencia</h2>
-<p className="font-body-md text-body-md text-outline max-w-2xl mx-auto">Cada paso de nuestro proceso está guiado por el respeto a la tierra y el bienestar de quienes confían en nosotros.</p>
+<h2 className="font-headline-lg text-headline-lg text-primary mb-sm">lo que nos gusta</h2>
+<p className="font-body-md text-body-md text-outline max-w-2xl mx-auto">hacer cosita ricas.</p>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
 <div className="bg-surface p-lg rounded-xl tinted-shadow border border-surface-container-highest">
 <div className="w-12 h-12 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-md">
 <span className="material-symbols-outlined" data-weight="fill">volunteer_activism</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-primary mb-sm">Salud Integral</h3>
-<p className="font-body-md text-body-md text-on-surface-variant">El aguacate es más que una fruta; es un superalimento que nutre el corazón y el alma de las familias.</p>
+<h3 className="font-headline-md text-headline-md text-primary mb-sm">que dicen las naciones unidas</h3>
+<p className="font-body-md text-body-md text-on-surface-variant">Coma aguacate para que viva más, no lo digo yo por venderles, si si crea compre agucates.</p>
 </div>
 <div className="bg-surface p-lg rounded-xl tinted-shadow border border-surface-container-highest">
 <div className="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mb-md">
 <span className="material-symbols-outlined" data-weight="fill">eco</span>
 </div>
-<h3 className="font-headline-md text-headline-md text-primary mb-sm">Cultura Ancestral</h3>
-<p className="font-body-md text-body-md text-on-surface-variant">Honramos la sabiduría de los agricultores que han perfeccionado el arte de la cosecha milenaria.</p>
+<h3 className="font-headline-md text-headline-md text-primary mb-sm">dato curioso del aguacte </h3>
+<p className="font-body-md text-body-md text-on-surface-variant"> origen misoamericano (sur de Mexico, Guatemala)
+     su nombre se deriba de
+     nahuatl ahuacatl que significa ...
+     pero bueno y que su espancion fue en el año 1600 por los españoles
+    , pero como llego a Colombia  como proyecto de expancion para 
+    el agucate hace mas de 20 a 25 años  a rededor del 2000 se inicio la campaña de 
+    siembra del agucate  y empezo a dar  frutos en el 2007-2009
+    ahora Colombia es el segundo productor  de agucate del mundo des pues de Mexico 
+    y si no les gusta este  dato curioso ingrese a este link
+     </p>
+     <Link to={"/registro"}>sugerencias</Link>
 </div>
 <div className="bg-surface p-lg rounded-xl tinted-shadow border border-surface-container-highest">
 <div className="w-12 h-12 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full flex items-center justify-center mb-md">

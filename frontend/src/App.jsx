@@ -31,12 +31,12 @@ function App() {
         </nav>
         <main className='content'>
         <Routes>
-        <Route path="/" element={<Casa />} />
+        <Route path="/" element={< PaginaPrincipal/>}/>
         <Route path="/registro" element={<Usuario />} />
         <Route path="/inicio-sesion" element={<InicioDeseion />} />
         <Route path="/usuario-get" element={<UsuarioGet />} />
         <Route path="/bienvenida" element={<Bienvenida />} />
-        <Route path="/paginaPrincipal" element={< PaginaPrincipal/>}/>
+        <Route path="/contacto" element={<Casa/>}/>
         <Route path="/postproducto" element={<Postproducto/>}/>
         <Route path="/tienda" element={<Tienda/>}/>
       

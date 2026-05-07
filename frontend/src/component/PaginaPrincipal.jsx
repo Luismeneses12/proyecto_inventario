@@ -101,11 +101,11 @@ export default function PaginaPrincipal() {
 </div>
 <div className="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-4 py-1 transition-all duration-300 ease-out hover:text-green-700">
 <span className="material-symbols-outlined">eco</span>
-<span className="font-serif text-[11px] font-medium">Tienda</span>
+<Link to="/tienda">Tienda</Link>
 </div>
 <div className="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-4 py-1 transition-all duration-300 ease-out hover:text-green-700">
 <span className="material-symbols-outlined">chat</span>
-<span className="font-serif text-[11px] font-medium">Contacto</span>
+<Link to="/contacto" className="font-serif text-[11px] font-medium">Contacto</Link>
 </div>
 </nav>
  </>

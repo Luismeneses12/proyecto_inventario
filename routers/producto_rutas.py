@@ -55,9 +55,9 @@ def obtener_producto_por_id(identificador):
 def eliminar_productods(identificador):
     producto = Producto.query.get(identificador)
     
-    if  producto:
+    if   not producto :
+        return jsonify({"message": "Producto no encontrado"}), 404
+    else:
         db.session.delete(producto)
         db.session.commit()
         return jsonify({"message": "Producto eliminado exitosamente"}), 200
-    else:
-        return jsonify({"message": "Producto no encontrado"}), 404

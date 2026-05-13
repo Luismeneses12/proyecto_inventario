@@ -10,6 +10,7 @@ import Casa from './component/Casa'
 import PaginaPrincipal from './component/PaginaPrincipal'
 import Postproducto from './component/Postproducto'
 import Tienda from './component/Tienda'
+import Navegador from './component/Navegador'
 
 
 function App() {
@@ -22,13 +23,15 @@ function App() {
         <nav>
           <ul>
             <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/registro">Registro</Link></li>
-            <li><Link to="/postproducto">producto</Link></li>
+            <li><Link to="/registro">Registro</Link></li>            
             <li><Link to="/#">recetario</Link></li>
             <li><Link to="/inicio-sesion">login</Link></li>
+            <li><Link to="/tienda">tienda</Link></li>
             
           </ul>
+        
         </nav>
+         {/* <Navegador/> */ } 
         <main className='content'>
         <Routes>
         <Route path="/" element={< PaginaPrincipal/>}/>

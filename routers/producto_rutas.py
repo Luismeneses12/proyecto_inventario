@@ -61,3 +61,19 @@ def eliminar_productods(identificador):
         db.session.delete(producto)
         db.session.commit()
         return jsonify({"message": "Producto eliminado exitosamente"}), 200
+    
+@producto_bp.route('/actualizarProducto/<int:identificador>', methods=['PUT'])
+def actualizar_producto(identificador):
+    productos  = Producto.query.get(identificador)
+
+    if productos:
+        data = request.get_json()
+        productos.nombre = data.get('nombre', productos.nombre)
+        productos.descripcion = data.get('descripcion', productos.descripcion)
+        productos.precio = data.get('precio', productos.precio)
+        productos.cantidad = data.get('cantidad', productos.cantidad)
+
+        db.session.commit()
+        return jsonify({"message": "Producto actualizado exitosamente"}), 200
+    
+

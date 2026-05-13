@@ -6,15 +6,7 @@ export default function PaginaPrincipal() {
 
     return (
         <>
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-stone-50 dark:bg-stone-950 text-green-800 dark:text-green-400 border-b border-stone-200 dark:border-stone-800 shadow-sm shadow-green-900/5">
-        <div className="flex items-center gap-4">
-        <span className="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity scale-95 active:transition-transform">menu</span>
-        <span className="font-serif font-black text-green-900 dark:text-green-100 italic font-bold text-lg tracking-tight">Oro Verde</span>
-        </div>
-        <div className="flex items-center gap-4">
-        <span className="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity scale-95 active:transition-transform">shopping_cart</span>
-        </div>
-        </header>
+       
 <main className="pt-24 pb-32">
 
 <section className="max-w-container-max mx-auto px-4 md:px-gutter mb-xl">

@@ -36,3 +36,44 @@ def obtener_productos():
             "cantidad": producto.cantidad
         })
     return jsonify(productos_list), 200
+
+@producto_bp.route('/obtenerProductosPorID/<int:identificador>', methods=['GET'])
+def obtener_producto_por_id(identificador):
+    producto = Producto.query.get(identificador)
+    if producto:
+        return jsonify({
+            "identificador": producto.identificador,
+            "nombre": producto.nombre,
+            "descripcion": producto.descripcion,
+            "precio": producto.precio,
+            "cantidad": producto.cantidad
+        }), 200
+    else:
+        return jsonify({"message": "Producto no encontrado"}), 404
+
+@producto_bp.route('/eliminarProducto/<int:identificador>', methods=['DELETE'])
+def eliminar_productods(identificador):
+    producto = Producto.query.get(identificador)
+    
+    if   not producto :
+        return jsonify({"message": "Producto no encontrado"}), 404
+    else:
+        db.session.delete(producto)
+        db.session.commit()
+        return jsonify({"message": "Producto eliminado exitosamente"}), 200
+    
+@producto_bp.route('/actualizarProducto/<int:identificador>', methods=['PUT'])
+def actualizar_producto(identificador):
+    productos  = Producto.query.get(identificador)
+
+    if productos:
+        data = request.get_json()
+        productos.nombre = data.get('nombre', productos.nombre)
+        productos.descripcion = data.get('descripcion', productos.descripcion)
+        productos.precio = data.get('precio', productos.precio)
+        productos.cantidad = data.get('cantidad', productos.cantidad)
+
+        db.session.commit()
+        return jsonify({"message": "Producto actualizado exitosamente"}), 200
+    
+

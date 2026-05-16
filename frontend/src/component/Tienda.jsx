@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 export default function Tienda() {
-     const navigate = useNavigate()
-  const [productos, setProductos] = useState([])
- const  haldGet = async (e)=>{
+
+    const navigate = useNavigate()
+    const [productos, setProductos] = useState([])
+    const  haldGet = async (e)=>{
     try{ 
         const res = await fetch('http://localhost:5000/productosGet',{
             method: 'GET',
@@ -17,10 +18,9 @@ export default function Tienda() {
         const data = await res.json()
         setProductos(data)
     }
-    catch(error){
-      console.error('Error al obtener los productos:', error)
+    catch(error){console.error('Error al obtener los productos:', error)
     }
- }
+    }
 
   return (    
     <>

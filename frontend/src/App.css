@@ -17,7 +17,7 @@
   }
 }
 body{
-  min-height: max(884px, 100dvh);
+ background-image: url("C:\\Users\\jhon0\\Desktop\\proyectoInventario\\frontend\\src\\picture\\fondoAguacate.png");
 }
 .hero {
   position: relative;

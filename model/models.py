@@ -37,5 +37,15 @@ class Recetas(db.Model):
     ingredientes = db.Column(db.Text, nullable=False)
     instrucciones = db.Column(db.Text, nullable=False)
     
+#borra esta base de datos en  y volver a hacerla en  de nuevo agregando opciones 
+class ConsultaFormurlario(db.Model):
+    __tablename__ = "consultaFormulario"
+
+    identificacionConsultaFormulario = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    correo = db.Column(db.String(100), nullable=False)
+    consulta = db.Column(db.String(100), nullable=False)
+    mensaje = db.Column(db.Text, nullable=False)
+    
 
 

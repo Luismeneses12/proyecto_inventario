@@ -5,6 +5,7 @@ import {  useNavigate } from 'react-router-dom'
 import '../style/StyleRegistro.css'
 import GetPorID from './GetPorID'
 import Eliminarproducto from './Eliminarproducto'
+import ActualizacionProductos from './ActualizacionProductos'
 
 export default function Postproducto() {
    const [nombre, setNombre] = React.useState("")
@@ -102,7 +103,9 @@ export default function Postproducto() {
         <div className="lg:h-full">
            <Eliminarproducto />
         </div>
-
+        <div className='lg:h-full'>
+          <ActualizacionProductos/>
+        </div>
       </div>
 
       {/* NAVEGACIÓN MÓVIL (Opcional) */}

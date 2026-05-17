@@ -76,6 +76,12 @@ export default function InicioDeseion() {
                     >
                         ¿No tienes cuenta? Regístrate
                     </button>
+                    <button
+                        type="button"
+                        className="btn-secondary"
+                        onClick={() => navigate('/recuperarcion')} > 
+                                            ¿Olvidaste tu contraseña? Recuperar
+                    </button>
                 </form>
 
             </div>

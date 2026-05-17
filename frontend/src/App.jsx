@@ -11,6 +11,7 @@ import PaginaPrincipal from './component/PaginaPrincipal'
 import Postproducto from './component/Postproducto'
 import Tienda from './component/Tienda'
 import Navegador from './component/Navegador'
+import RecuperaContraseña from './component/RecuperaContraseña'
 
 
 
@@ -27,24 +28,24 @@ function App() {
       
       {/* Lado Izquierdo: Logo o Nombre del Proyecto */}
       <div className="flex items-center gap-8">
-        <h1 className="text-xl font-bold text-indigo-600 tracking-tight">
-          AGUACATE<span className="text-gray-900">OLOGIA</span>
+        <h1 className="text-xl font-bold text-green-800 tracking-tight">
+          AGUACATE<span className="text-black-900">OLOGIA</span>
         </h1>
         
         {/* Enlaces de Navegación (Desktop) */}
         <ul className="hidden md:flex items-center gap-6">
           <li>
-            <Link to="/" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">
+            <Link to="/" className="text-green-600 hover:text-indigo-600 font-medium transition-colors">
               Inicio
             </Link>
           </li>
           <li>
-            <Link to="/tienda" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">
+            <Link to="/tienda" className="text-green-600 hover:text-indigo-600 font-medium transition-colors">
               Tienda
             </Link>
           </li>
           <li>
-            <Link to="/#" className="text-gray-600 hover:text-indigo-600 font-medium transition-colors">
+            <Link to="/#" className="text-green-600 hover:text-indigo-600 font-medium transition-colors">
               Recetario
             </Link>
           </li>
@@ -56,14 +57,14 @@ function App() {
       <div className="flex items-center gap-4">
         <Link 
           to="/registro" 
-          className="hidden sm:block text-gray-500 hover:text-gray-700 text-sm font-semibold"
+          className="hidden sm:block text-green-500 hover:text-gray-600 text-sm font-semibold"
         >
           Registro
         </Link>
         
         <Link 
           to="/inicio-sesion" 
-          className="flex items-center gap-2 p-1 pr-4 bg-gray-50 hover:bg-gray-100 rounded-full border border-gray-200 transition-all"
+          className="flex items-center gap-2 p-1 pr-4 bg-green-600 hover:bg-green-700 rounded-full border border-gray-200 transition-all"
         >
           {/* Avatar / Imagen de Login */}
           <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300 border border-white">
@@ -100,7 +101,7 @@ function App() {
 
         <Route path="/tienda" element={<Tienda/>}/>
 
-     
+      <Route path='/recuperarcion' element={<RecuperaContraseña/>}/>
 
       </Routes>
 

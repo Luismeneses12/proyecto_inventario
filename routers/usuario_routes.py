@@ -93,3 +93,11 @@ def eliminar_usuario(identificador):
     db.session.commit()
     
     return jsonify({'message': 'Usuario eliminado exitosamente'}), 200
+
+@usuario_bp.route('/recuperar_contraeña/<string:correo>', methods=['GET'])
+def recuperar_contraseña (correo):
+    usuario = Usuario.query.filter_by(correo=correo).first()
+    if not usuario:
+        return jsonify({'message': 'Usuario no encontrado'}), 404
+    
+    return jsonify({'contraseña': usuario.contraseña}), 200

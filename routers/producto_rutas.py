@@ -75,5 +75,4 @@ def actualizar_producto(identificador):
 
         db.session.commit()
         return jsonify({"message": "Producto actualizado exitosamente"}), 200
-
-
+    

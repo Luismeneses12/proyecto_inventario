@@ -12,6 +12,7 @@ import Postproducto from './component/Postproducto'
 import Tienda from './component/Tienda'
 import Navegador from './component/Navegador'
 import RecuperaContraseña from './component/RecuperaContraseña'
+import ObtenerRecetas from './component/ObtenerRecetas'
 
 
 
@@ -45,7 +46,7 @@ function App() {
             </Link>
           </li>
           <li>
-            <Link to="/#" className="text-green-600 hover:text-indigo-600 font-medium transition-colors">
+            <Link to="/recetas" className="text-green-600 hover:text-indigo-600 font-medium transition-colors">
               Recetario
             </Link>
           </li>
@@ -101,12 +102,31 @@ function App() {
 
         <Route path="/tienda" element={<Tienda/>}/>
 
-      <Route path='/recuperarcion' element={<RecuperaContraseña/>}/>
+        <Route path='/recuperarcion' element={<RecuperaContraseña/>}/>
+
+        <Route path='/recetas' element={<ObtenerRecetas/>}/>
 
       </Routes>
 
         </main>
-
+    <section>
+      {/* NAVEGACIÓN INFERIOR (Mobile) */}
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">home</span>
+          <Link to="/" className="text-[11px] font-medium">Inicio</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">eco</span>
+          
+          <Link to="/tienda"  className="text-[11px] font-medium">Tienda</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1" href="#!">
+          <span className="material-symbols-outlined">chat</span>      
+          <Link to="/contacto"  className='text-[11px] font-bold'> contacto</Link>
+        </a>
+      </nav>
+    </section>
       
 
      

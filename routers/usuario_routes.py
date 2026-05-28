@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from model.models import db, Usuario
+from model.models import db, Usuario, validacionCorreo
 
 usuario_bp = Blueprint('usuario', __name__)
 
@@ -8,21 +8,30 @@ def crear_usuario():
     data = request.get_json()
     
     nombre = data.get('nombre')
-    correo = data.get('correo')
+    correo = data.get('correo')    
     contraseña = data.get('contraseña')
+    
+    
     
     if not nombre or not correo or not contraseña:
         return jsonify({'message': 'Faltan campos requeridos'}), 400
-    
+
     nuevo_usuario = Usuario(
-        nombre=data['nombre'],
-        correo=data['correo'],
-        contraseña=data['contraseña']
+        nombre=nombre,
+        correo=correo,
+        contraseña=contraseña
     )
 
     db.session.add(nuevo_usuario)
     db.session.commit()
-    
+
+    nueva_validacion = validacionCorreo(
+        valorEnviado=0, # Inicia en cero como acordamos
+        identificadorUsuario=nuevo_usuario.identificador # Le pasamos el ID que se acaba de generar
+    )
+    db.session.add(nueva_validacion)
+    db.session.commit()
+
     return jsonify({'message': 'Usuario creado exitosamente'}), 201
 
 @usuario_bp.route('/login', methods=['POST'])
@@ -93,6 +102,8 @@ def eliminar_usuario(identificador):
     db.session.commit()
     
     return jsonify({'message': 'Usuario eliminado exitosamente'}), 200
+
+
 
 @usuario_bp.route('/recuperar_contraeña/<string:correo>', methods=['GET'])
 def recuperar_contraseña (correo):

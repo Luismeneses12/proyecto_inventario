@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -21,6 +21,9 @@ export default function Tienda() {
     catch(error){console.error('Error al obtener los productos:', error)
     }
     }
+    useEffect(()=>{
+        haldGet()
+    },[])
 
   return (    
     <>
@@ -29,12 +32,7 @@ export default function Tienda() {
             <div className="max-w-6xl mx-auto">
                 <header className="flex justify-between items-center mb-8">
                     <h2 className="text-4xl font-bold text-green-800 mb-4">Catálogo de Productos</h2>
-                    <button 
-                        onClick={haldGet}
-                        className="bg-green-600 hover:bg-emerald-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md"
-                    >
-                        Actualizar Inventario
-                    </button>
+                  
                 </header>
 
                 {/* Contenedor Grid: Se adapta de 1 a 3 columnas según el tamaño de pantalla */}

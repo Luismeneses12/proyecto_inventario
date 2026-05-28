@@ -23,6 +23,9 @@ export default function Usuario() {
         }) 
         const resultado = await res.json()
         alert(resultado.message)
+        if(resultado.ok){
+            alert('Usuario registrado exitosamente')
+        }
 
     } catch (error) {
         console.error('Error al enviar los datos:', error)

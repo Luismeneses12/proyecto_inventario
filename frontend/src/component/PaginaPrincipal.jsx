@@ -91,20 +91,22 @@ export default function PaginaPrincipal() {
 <section className='w-full m-0 p-0 leanding-none'>
      <Casa/>
 </section>
-<nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-20 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-t border-stone-100 dark:border-stone-800 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]"  >
-<div className="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-4 py-1 transition-all duration-300 ease-out hover:text-green-700">
-<span className="material-symbols-outlined">home</span>
-<span className="font-serif text-[11px] font-medium">Inicio</span>
-</div>
-<div className="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-4 py-1 transition-all duration-300 ease-out hover:text-green-700">
-<span className="material-symbols-outlined">eco</span>
-<Link to="/tienda">Tienda</Link>
-</div>
-<div className="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-4 py-1 transition-all duration-300 ease-out hover:text-green-700">
-<span className="material-symbols-outlined">chat</span>
-<Link to="/contacto" className="font-serif text-[11px] font-medium">Contacto</Link>
-</div>
-</nav>
+{/* NAVEGACIÓN INFERIOR (Mobile) */}
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">home</span>
+          <Link to="/" className="text-[11px] font-medium">Inicio</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">eco</span>
+          
+          <Link to="/tienda"  className="text-[11px] font-medium">Tienda</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1" href="#!">
+          <span className="material-symbols-outlined">chat</span>
+          <span className="text-[11px] font-bold">Contacto</span>
+        </a>
+      </nav>
 
 </main>
 

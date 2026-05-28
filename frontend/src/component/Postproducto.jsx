@@ -6,6 +6,7 @@ import '../style/StyleRegistro.css'
 import GetPorID from './GetPorID'
 import Eliminarproducto from './Eliminarproducto'
 import ActualizacionProductos from './ActualizacionProductos'
+import IngresarRecetas from './IngresarRecetas'
 
 export default function Postproducto() {
    const [nombre, setNombre] = React.useState("")
@@ -30,9 +31,17 @@ export default function Postproducto() {
           cantidad: cantidad
         })
       })
+      
       const resultado = await res.json()
       alert(resultado.message)
-
+      if(!res.ok){
+        throw new Error(resultado.message || 'Error al enviar los datos')
+      }
+      else{
+        alert('Producto creado exitosamente')
+        
+      }
+    
 
     }
     catch(error){
@@ -69,7 +78,7 @@ export default function Postproducto() {
             <input
               className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition"
               type="text" placeholder="Nombre" value={nombre}
-              onChange={(e) => setNombre(e.target.value)} required
+              onChange={(e) => setNombre(e.target.value)} 
             />
             <textarea
               className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition"
@@ -106,6 +115,9 @@ export default function Postproducto() {
         <div className='lg:h-full'>
           <ActualizacionProductos/>
         </div>
+      </div>
+       <div className='lg:h-full'>
+        <IngresarRecetas/>
       </div>
 
       {/* NAVEGACIÓN MÓVIL (Opcional) */}

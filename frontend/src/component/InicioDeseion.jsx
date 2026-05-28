@@ -11,7 +11,7 @@ export default function InicioDeseion() {
     const [contraseña, setContraseña] = useState('')
     const navigate = useNavigate()
 
-     const admit = {"correo":"admi@admi.com",
+     const admit = {"correo":"admi1@admi.com",
                     "contraseña":"admi"}
      
 

@@ -39,7 +39,7 @@ export default function ObtenerRecetas() {
                 {datos.map((receta) => (
                     <div key={receta.identificadorRecetas} className="bg-white rounded-lg shadow-md border border-gray-100 p-4">
                         <h2 className="text-xl font-semibold text-gray-800 mb-2">{receta.titulo}</h2>
-                        <img src={receta.foto} alt={receta.titulo} className="w-full h-48 object-cover rounded-md mb-4" />
+                        <img src={`http://127.0.0.1:5000/${receta.foto}`} alt={receta.titulo} className="w-full h-48 object-cover rounded-md mb-4" />
                         <p className="text-gray-600 mb-2"><strong>Ingredientes:</strong> {receta.ingredientes}</p>
                         <p className="text-gray-600"><strong>Instrucciones:</strong> {receta.instrucciones}</p>
                     </div>

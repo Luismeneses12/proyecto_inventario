@@ -9,45 +9,44 @@ import ActualizacionProductos from './ActualizacionProductos'
 import IngresarRecetas from './IngresarRecetas'
 
 export default function Postproducto() {
-   const [nombre, setNombre] = React.useState("")
-   const [descripcion, setDescription] = React.useState("")
-   const [precio, setPrecio] = React.useState("")
-   const [cantidad, setCantidad] = React.useState("")
-   const navigate = useNavigate()
+     const [nombre, setNombre] = useState("")
+     const [foto, setFoto] = useState(null)
 
-   
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try{
-      const res =   fetch('http://127.0.0.1:5000/productoPost', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nombre: nombre,
-          descripcion: descripcion,
-          precio: precio,
-          cantidad: cantidad
+    const [descripcion, setDescription] = useState("")
+    const [precio, setPrecio] = useState("")
+    const [cantidad, setCantidad] = useState("")
+
+    const ingresarProducto = async(e) =>{
+      e.preventDefault()
+      try {
+        const formData = new FormData()
+        formData.append('nombre', nombre)
+        formData.append('descripcion', descripcion)
+        formData.append('precio', precio)
+        formData.append('cantidad', cantidad)
+        if (foto) {
+          formData.append('foto', foto)
+        }
+         const res = await fetch ('http://127.0.0.1:5000/productoPost', {
+          method: 'POST',
+          body: formData
         })
-      })
-      
-      const resultado = await res.json()
-      alert(resultado.message)
-      if(!res.ok){
-        throw new Error(resultado.message || 'Error al enviar los datos')
+        const data = await res.json()
+        if (res.ok) {          alert("🎉 ¡Producto ingresado correctamente en el inventario!")
+          setNombre("")
+          setDescription("")
+          setPrecio("")
+          setCantidad("")
+          setFoto(null)
+        } else {
+          alert(data.error || "Hubo un error al guardar el producto")
+        }
       }
-      else{
-        alert('Producto creado exitosamente')
-        
+        catch (error) {
+          console.error("Error al ingresar el producto:", error)
+          alert("Error de conexión con el servidor")
       }
-    
-
     }
-    catch(error){
-      console.error('Error al enviar los datos:', error)
-    }
-  }
   return(
     <>
    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
@@ -74,12 +73,22 @@ export default function Postproducto() {
             <span className="material-symbols-outlined text-green-600">add_box</span>
             Crear Producto
           </h2>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={ingresarProducto} className="flex flex-col gap-4">
             <input
               className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition"
               type="text" placeholder="Nombre" value={nombre}
               onChange={(e) => setNombre(e.target.value)} 
             />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Foto producto </label>
+                    <input 
+                        type="file" 
+                        accept="image/*" // Restringe el selector solo a imágenes
+                        // En inputs de tipo file NO se usa value={foto}. Se captura mediante e.target.files[0]
+                        onChange={(e) => setFoto(e.target.files[0])} 
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200"           
+                    />
+            </div> 
             <textarea
               className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 outline-none transition"
               placeholder="Descripción" value={descripcion}

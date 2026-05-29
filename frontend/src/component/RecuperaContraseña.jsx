@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function RecuperaContraseña() {
@@ -71,10 +72,9 @@ export default function RecuperaContraseña() {
       
       <button 
         type="button" 
-        onClick={() => navigate('/inicio-sesion')}
+       
         className="w-full bg-gray-50 hover:bg-gray-100 text-gray-600 font-medium py-2 px-4 rounded-lg transition duration-200 text-sm text-center block"
-      >
-        Regresar al inicio de sesión
+      ><Link to='/inicio-sesion' >Regresar al inicio de sesión</Link>  
       </button>
     </div>
   </form>

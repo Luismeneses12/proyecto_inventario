@@ -1,23 +1,39 @@
 from flask import Blueprint, request, jsonify
 from model.models import db, Producto
+import os
+from werkzeug.utils import secure_filename
+
 
 producto_bp = Blueprint('producto', __name__)
+
+UpLOAD_FOLDER = 'static/uploads'
 
 
 @producto_bp.route('/productoPost', methods=['POST'])
 def crear_producto():
-    data = request.get_json()
+    
+    nombre = request.form.get('nombre')
+    descripcion = request.form.get('descripcion')
+    precio = request.form.get('precio')
+    cantidad = request.form.get('cantidad')
 
-    nombre = data.get('nombre')
-    descripcion = data.get('descripcion')
-    precio = data.get('precio')
-    cantidad = data.get('cantidad')
+    foto = request.files.get('foto')
+
+    ruta_foto = ""
+
+    if foto:
+        os.makedirs(UpLOAD_FOLDER, exist_ok=True)
+        nombre_archivo = secure_filename(foto.filename)
+        ruta_foto = os.path.join(UpLOAD_FOLDER, nombre_archivo)
+        foto.save(ruta_foto)
 
     nuevo_producto = Producto(
         nombre=nombre,
+        foto=ruta_foto,
         descripcion=descripcion,
         precio=precio,
-        cantidad=cantidad
+        cantidad=cantidad,
+        
     )
     db.session.add(nuevo_producto)
     db.session.commit()

@@ -21,6 +21,7 @@ class Producto(db.Model):
 
     identificador = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(50), nullable=False)
+    foto = db.Column(db.String(600), nullable=False)
     descripcion = db.Column(db.String(200), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     cantidad = db.Column(db.Integer, nullable=False)        

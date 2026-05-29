@@ -66,7 +66,7 @@ export default function InicioDeseion() {
                         value={contraseña}
                         onChange={(e) => setContraseña(e.target.value)}
                     />
-                    <button type="submit" className="btn-primary">Iniciar sesión</button>
+                    <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow-md transition duration-200">Iniciar sesión</button>
                     
                     {/* 3. Acción de navegación */}
                     <button 

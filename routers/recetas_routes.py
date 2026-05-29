@@ -7,17 +7,36 @@ receta_bp = Blueprint('recetas', __name__)
 
 UPLOAD_FOLDER = 'static/uploads'
 
-@receta_bp.route('/recetaspost', methods=['POST'])
+@receta_bp.route('/postReceta', methods=['POST'])
 def crear_receta():
-    data  =  request.get_json()
-    titulo = data.get('titulo')
-    foto = data.get('foto')
-    ingredientes = data.get('ingredientes')
-    instrucciones = data.get('instrucciones')
-   
+
+    titulo = request.form.get('titulo')
+    ingredientes = request.form.get('ingredientes')
+    instrucciones = request.form.get('instrucciones')
+
+    foto = request.files.get('foto')
+
+    if not titulo:
+        return jsonify({"error": "El titulo es obligatorio"}), 400
+
+    ruta_foto = ""
+
+    if foto:
+        # 🔥 LA SOLUCIÓN AQUÍ: 
+        # Esto asegura que la carpeta 'static/uploads' se cree automáticamente si no existe.
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+        nombre_archivo = secure_filename(foto.filename)
+
+        # Usamos os.path.join para armar la ruta de forma segura en cualquier sistema operativo
+        ruta_foto = os.path.join(UPLOAD_FOLDER, nombre_archivo)
+
+        # Ahora que la carpeta sí existe, no dará error al guardar
+        foto.save(ruta_foto)
+
     nueva_receta = Recetas(
         titulo=titulo,
-        foto=foto,
+        foto=ruta_foto,
         ingredientes=ingredientes,
         instrucciones=instrucciones
     )
@@ -25,7 +44,9 @@ def crear_receta():
     db.session.add(nueva_receta)
     db.session.commit()
 
-    return jsonify({"mensaje": "Receta creada correctamente"})
+    return jsonify({
+        "mensaje": "Receta creada correctamente"
+    }), 201
 
 @receta_bp.route('/recetasget', methods=['GET'])
 def obtener_recetas():

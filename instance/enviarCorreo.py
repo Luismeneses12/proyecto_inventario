@@ -19,7 +19,9 @@ cursor.execute("""
     WHERE v.valorEnviado = 0
 """)
 registros = cursor.fetchall()
-
+## lugar para  variables 
+remitente = "scriptspythonemail@gmail.com"
+contraseña = "dbhy pxxk wcrw rblb"
 
 # 3. Condición: Si hay registros en 0, se abre el servidor y se envían
 if registros:

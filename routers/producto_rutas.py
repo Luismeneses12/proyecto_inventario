@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 producto_bp = Blueprint('producto', __name__)
 
-UpLOAD_FOLDER = 'static/uploads'
+UPLOAD_FOLDER = 'static/uploads'
 
 
 @producto_bp.route('/productoPost', methods=['POST'])
@@ -22,9 +22,9 @@ def crear_producto():
     ruta_foto = ""
 
     if foto:
-        os.makedirs(UpLOAD_FOLDER, exist_ok=True)
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
         nombre_archivo = secure_filename(foto.filename)
-        ruta_foto = os.path.join(UpLOAD_FOLDER, nombre_archivo)
+        ruta_foto = os.path.join(UPLOAD_FOLDER, nombre_archivo)
         foto.save(ruta_foto)
 
     nuevo_producto = Producto(
@@ -46,6 +46,7 @@ def obtener_productos():
     for producto in productos:
         productos_list.append({
             "identificador": producto.identificador,
+            "foto": producto.foto,
             "nombre": producto.nombre,
             "descripcion": producto.descripcion,
             "precio": producto.precio,
@@ -59,6 +60,7 @@ def obtener_producto_por_id(identificador):
     if producto:
         return jsonify({
             "identificador": producto.identificador,
+            "foto": producto.foto,
             "nombre": producto.nombre,
             "descripcion": producto.descripcion,
             "precio": producto.precio,

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,  } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Usuario from './Usuario'
 
 export default function Tienda() {
 
@@ -78,8 +79,18 @@ export default function Tienda() {
                                         {producto.cantidad > 0 ? `Stock: ${producto.cantidad}` : 'Agotado'}
                                     </span>
                                 </div>
-
-                                <button className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-lg transition-colors shadow-md active:scale-[0.99] transform">
+                                <button className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-lg transition-colors shadow-md active:scale-[0.99] transform"
+                                  
+                                  onClick={()=>{ localStorage.setItem("productoSeleccionado", JSON.stringify(
+                                    {identificador : producto.identificador,
+                                    nombre: producto.nombre,
+                                    descripcion: producto.descripcion,
+                                    precio: producto.precio,
+                                    cantidad: producto.cantidad,
+                                    foto: producto.foto
+                                     }
+                                  ));
+                                    navigate('/informeVentas')}}>
                                     Hacer pedido
                                 </button>
                             </div>

@@ -5,6 +5,9 @@ from routers.usuario_routes import usuario_bp
 from routers.producto_rutas import producto_bp
 from routers.fomulario_router import fomulario_bp
 from routers.recetas_routes import receta_bp
+from routers.ventas_rutas import ventas_bp
+
+from instance.enviarCorreo import enviar_correo
 
 def create_app():
    app = Flask(__name__, static_folder='static')
@@ -17,6 +20,9 @@ def create_app():
    app.register_blueprint(producto_bp)
    app.register_blueprint(fomulario_bp)
    app.register_blueprint(receta_bp )
+   app.register_blueprint(ventas_bp)
+   enviar_correo()
+   
    CORS(app)
    with app.app_context():
 #          db.drop_all()            

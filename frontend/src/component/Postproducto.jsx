@@ -135,7 +135,7 @@ export default function Postproducto() {
           <Link to="/tienda" className="text-gray-400 hover:text-green-600">Tienda</Link>
       </nav>
     </div>
-  )
+  
     </>
   )
 }

@@ -35,6 +35,18 @@ class Venta(db.Model):
     cantidad = db.Column(db.Integer, nullable=False)
     total = db.Column(db.Float, nullable=False)
 
+
+class informacionVenta(db.Model):
+    __tablename__ = 'informacionVentas'
+
+    identificadorInformeVenta = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    idVentas = db.Column(db.Integer, db.ForeignKey('venta.identificador'), nullable=False)
+    direccionEnvio = db.Column(db.String(200), nullable=False)
+    telefonoContacto = db.Column(db.String(20), nullable=False)
+    fechaEntrega = db.Column(db.Date, nullable=False)
+    fechaCompra = db.Column(db.Date, nullable=False) 
+
+
 class Recetas(db.Model):
     __tablename__ = "recetas"
 

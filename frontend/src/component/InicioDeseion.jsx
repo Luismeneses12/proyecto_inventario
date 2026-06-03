@@ -28,12 +28,22 @@ export default function InicioDeseion() {
             })
             const data = await res.json()
             if (correo === admit.correo && contraseña === admit.contraseña) {
+                localStorage.setItem('userLogueado', 'true');
                 navigate('/bienvenida');
             }
 
             if (res.ok) {
                 console.log('Inicio de sesión exitoso:', data);
-                navigate('/');
+                
+                // Guardamos el objeto asegurando que incluya el 'identificador' que envía tu backend
+                const usuariologueado = {
+                    identificador: data.usuario?.identificador || data.identificador || 1, // Respaldo por si viene en la raíz o el objeto
+                    nombre: data.usuario?.nombre || "Usuario",
+                    correo: correo
+                }
+                
+                localStorage.setItem('userLogueado', JSON.stringify(usuariologueado));
+                navigate('/tienda');
             }
 
                 else{
@@ -66,7 +76,14 @@ export default function InicioDeseion() {
                         value={contraseña}
                         onChange={(e) => setContraseña(e.target.value)}
                     />
-                    <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow-md transition duration-200">Iniciar sesión</button>
+                    <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow-md transition duration-200"
+                     onClick={()=>{
+                        localStorage.setItem('userLogueado',
+                            JSON.stringify({ correo : correo, contraseña :
+                                contraseña })
+                        )
+                     }}
+                     >Iniciar sesión</button>
                     
                     {/* 3. Acción de navegación */}
                     <button 

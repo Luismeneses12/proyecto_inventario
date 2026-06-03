@@ -6,7 +6,12 @@ export default function Bienvenida() {
   
     return (
       <>
-        <div>Bienvenida</div>
+        <div className='text-center text-green-500'> <div>
+          <h1><p className='text-green-500' >panel de adminitracion </p></h1></div>
+          <div>
+            
+            </div> 
+          </div>
          <div>
                 <Postproducto/>
           </div>

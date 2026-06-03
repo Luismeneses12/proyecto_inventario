@@ -63,3 +63,12 @@ def obtener_recetas():
         })
 
     return jsonify(recetas_list)
+
+@receta_bp.route('/eliminarReceta/<int:identificacionRecetas>', methods=['DELETE'])
+def eliminar_receta(identificacionRecetas):
+    receta = Recetas.query.get(identificacionRecetas)
+    if not receta:
+        return jsonify({"message": "Receta no encontrada"}), 404
+    db.session.delete(receta)
+    db.session.commit()
+    return jsonify({"message": "Receta eliminada exitosamente"}), 200

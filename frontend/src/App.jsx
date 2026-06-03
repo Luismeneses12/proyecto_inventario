@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Children, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 
 import Usuario from './component/Usuario'
@@ -9,10 +9,19 @@ import Casa from './component/Casa'
 import PaginaPrincipal from './component/PaginaPrincipal'
 import Postproducto from './component/Postproducto'
 import Tienda from './component/Tienda'
-import Navegador from './component/Navegador'
+
 import RecuperaContraseña from './component/RecuperaContraseña'
 import ObtenerRecetas from './component/ObtenerRecetas'
+import InformeVentas from './component/InformeVentas'
 
+
+const RutasProtegidas = ({ children }) => {
+  const usuario = localStorage.getItem('userLogueado')
+  if (!usuario) {
+    return <Navigate to="/inicio-sesion" replace />
+  }
+  return children
+}
 function App() {
   return (
     // Contenedor principal: Ocupa toda la pantalla y organiza los elementos verticalmente
@@ -66,7 +75,7 @@ function App() {
               {/* Avatar / Imagen de Login */}
               <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300 border border-white">
                 <img 
-                  src="https://via.placeholder.com/150" 
+                  src="icons8-login-50.png"
                   alt="Perfil" 
                   className="w-full h-full object-cover"
                 />
@@ -92,6 +101,11 @@ function App() {
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/recuperarcion" element={<RecuperaContraseña />} />
           <Route path="/recetas" element={<ObtenerRecetas />} />
+          <Route path="/informeVentas" element=
+          {<RutasProtegidas>
+             <InformeVentas />
+          </RutasProtegidas>
+         } />
         </Routes>
       </main>
 

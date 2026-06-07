@@ -48,7 +48,7 @@ export default function PaginaPrincipal() {
 <div className="max-w-container-max mx-auto px-4 md:px-gutter">
 <div className="text-center mb-lg">
 <h2 className="font-headline-lg text-headline-lg text-primary mb-sm">lo que nos gusta</h2>
-<p className="font-body-md text-body-md text-outline max-w-2xl mx-auto">hacer cosita ricas.</p>
+<p className="font-body-md text-body-md text-outline max-w-2xl mx-auto">Atender a  nuestro clientes con la mejor disposicion del mundo y dar un producto de calidad con amor .</p>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
 <div className="bg-surface p-lg rounded-xl tinted-shadow border border-surface-container-highest">
@@ -56,7 +56,7 @@ export default function PaginaPrincipal() {
 <span className="material-symbols-outlined" data-weight="fill">volunteer_activism</span>
 </div>
 <h3 className="font-headline-md text-headline-md text-primary mb-sm">que dicen las naciones unidas</h3>
-<p className="font-body-md text-body-md text-on-surface-variant">Coma aguacate para que viva más, no lo digo yo por venderles, si si crea compre agucates.</p>
+<p className="font-body-md text-body-md text-on-surface-variant">Es considerado como uno de los alimentos mas ricos en grasa  y tiene un muchos usos.</p>
 </div>
 <div className="bg-surface p-lg rounded-xl tinted-shadow border border-surface-container-highest">
 <div className="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mb-md">
@@ -91,22 +91,6 @@ export default function PaginaPrincipal() {
 <section className='w-full m-0 p-0 leanding-none'>
      <Casa/>
 </section>
-{/* NAVEGACIÓN INFERIOR (Mobile) */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
-        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
-          <span className="material-symbols-outlined">home</span>
-          <Link to="/" className="text-[11px] font-medium">Inicio</Link>
-        </a>
-        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
-          <span className="material-symbols-outlined">eco</span>
-          
-          <Link to="/tienda"  className="text-[11px] font-medium">Tienda</Link>
-        </a>
-        <a className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1" href="#!">
-          <span className="material-symbols-outlined">chat</span>
-          <span className="text-[11px] font-bold">Contacto</span>
-        </a>
-      </nav>
 
 </main>
 

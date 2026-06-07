@@ -1,6 +1,6 @@
 import datetime
 from flask import Blueprint, request, jsonify
-from model.models import db, Venta, Usuario, Producto, informacionVenta
+from model.models import db, Venta, Usuario, Producto, informacionVenta , validacionInformeVentas
 
 ventas_bp = Blueprint('ventas', __name__)
 
@@ -69,6 +69,13 @@ def crear_venta():
         db.session.add(nuevo_informe)
         
         # Guardar todo en la base de datos de manera atómica
+        db.session.commit()
+
+        nueva_validacion = validacionInformeVentas(
+            valorEnviado = 0,
+            identificadorInformeVenta = nuevo_informe.identificadorInformeVenta
+        )
+        db.session.add(nueva_validacion)
         db.session.commit()
 
         return jsonify({

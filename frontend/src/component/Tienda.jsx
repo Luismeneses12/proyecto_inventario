@@ -81,16 +81,31 @@ export default function Tienda() {
                                 </div>
                                 <button className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-lg transition-colors shadow-md active:scale-[0.99] transform"
                                   
-                                  onClick={()=>{ localStorage.setItem("productoSeleccionado", JSON.stringify(
-                                    {identificador : producto.identificador,
-                                    nombre: producto.nombre,
-                                    descripcion: producto.descripcion,
-                                    precio: producto.precio,
-                                    cantidad: producto.cantidad,
-                                    foto: producto.foto
-                                     }
-                                  ));
-                                    navigate('/informeVentas')}}>
+                                  onClick={() => {
+        // 1. Verificar si el usuario está logueado en el sistema
+        const usuarioActivo = localStorage.getItem('userLogueado');
+
+        if (!usuarioActivo) {
+            // Si no está logueado, le avisamos y lo mandamos al Login
+            alert("Para realizar un pedido, primero debes iniciar sesión.");
+            navigate('/inicio-sesion');
+            return; // Detiene la ejecución para que no guarde el producto ni navegue a ventas
+        }
+
+        // 2. Si pasa la condición (sí está logueado), guarda el producto y avanza
+        localStorage.setItem("productoSeleccionado", JSON.stringify({
+            identificador: producto.identificador,
+            nombre: producto.nombre,
+            descripcion: producto.descripcion,
+            precio: producto.precio,
+            cantidad: producto.cantidad,
+            foto: producto.foto
+        }));
+        
+        navigate('/informeVentas');
+    }}
+>
+                                 
                                     Hacer pedido
                                 </button>
                             </div>

@@ -45,6 +45,13 @@ class informacionVenta(db.Model):
     telefonoContacto = db.Column(db.String(20), nullable=False)
     fechaEntrega = db.Column(db.Date, nullable=False)
     fechaCompra = db.Column(db.Date, nullable=False) 
+     
+class validacionInformeVentas(db.Model):
+    __tablename__ = "validacionInformeVentas"
+    
+    identificadorValidacionInformeVentas = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    valorEnviado = db.Column(db.Integer,default=0, nullable=False)
+    identificadorInformeVenta = db.Column(db.Integer, db.ForeignKey('informacionVentas.identificadorInformeVenta'), nullable=False)
 
 
 class Recetas(db.Model):

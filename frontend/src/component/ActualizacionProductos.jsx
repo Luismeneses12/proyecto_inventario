@@ -20,6 +20,15 @@ function ActualizacionProductos() {
           },
           body: JSON.stringify({ nombre, descripcion, precio, cantidad })
         })
+        const data =  res.json.get() 
+        if(res.error || data  == "erro  en la respuesta del servidor "){alert("problema en modificar el productpo ")}
+        else if (res.ok || data.succeful){alert("producto actualizado con exito ") 
+            setIdentificador("")
+            setNombre("")
+            setDescription("")
+            setPrecio("")
+            setCantidad("")
+        }
        }
        catch(error){
         console.error('Error al actualizar el producto:', error)

@@ -25,6 +25,23 @@ export default function Casa() {
             mensaje: mensaje
           })
         })
+        const data = await res.json();
+         if (res.status === 400 || data.error === 'formulario_incompleto') {
+                
+                alert('⚠️ Este correo ya se encuentra registrado. Intenta iniciar sesión.')
+            } else if (res.ok) {
+                alert('🎉 ¡Formulario registrado exitosamente en Aguacateología!')
+                                
+                setNombre('')
+                setCorreo('')
+                setConsulta('')
+                setMensaje('')
+
+            } else {
+                alert(data.message || 'Hubo un problema con el registro')
+            }
+
+        
       }
       catch(error){
     console.error("Error al enviar la consulta:", error);
@@ -55,13 +72,13 @@ return (
               <p className="text-stone-600 mb-6">
                 Nuestro equipo técnico y de cosecha está disponible para resolver tus inquietudes sobre pedidos, variedades o suscripciones.
               </p>
-              <button className="w-full bg-green-700 text-white py-3 px-6 rounded-lg font-medium shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+              <button className="w-full bg-green-700 text-white py-3 px-6 rounded-lg font-medium shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2" type='tel:3192831711' >
                 Atención personalizada por WhatsApp
               </button>
             </div>
 
             <div className="bg-stone-50 p-8 rounded-xl border border-stone-100">
-              <h4 className="text-xs font-bold text-stone-400 uppercase mb-4 tracking-widest">Nuestra Comunidad</h4>
+              <h4 className="text-xs font-bold text-green-600 uppercase mb-4 tracking-widest">Nuestra Comunidad</h4>
               <div className="flex gap-4 mb-6">
                 <a className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-800 hover:scale-105 transition-transform" href="#!">
                   <span className="material-symbols-outlined">public</span>
@@ -109,17 +126,17 @@ return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-stone-600 px-1">Nombre Completo</label>
-                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="Ej: Maria García" type="text" value={nombre} onChange={(e)=>{setNombre(e.target.value)}} />
+                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="Ej: Maria García" type="text" value={nombre} onChange={(e)=>{setNombre(e.target.value)}} required/>
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-stone-600 px-1">Correo Electrónico</label>
-                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="maria@ejemplo.com" type="email" value={correo} onChange={(e)=>{setCorreo(e.target.value)}} />
+                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="maria@ejemplo.com" type="email" value={correo} onChange={(e)=>{setCorreo(e.target.value)}}  required/>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium text-stone-600 px-1">consulta </label>
-                  <select className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow appearance-none" value={consulta} onChange={ (e)=>{setConsulta(e.target.value) } } > 
+                  <select className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow appearance-none" value={consulta} onChange={ (e)=>{setConsulta(e.target.value) } } required> 
                     
                     <option>Consulta General</option>
                     <option>Suscripción Semanal</option>

@@ -9,7 +9,7 @@ export default function PaginaPrincipal() {
     return (
         <>
        
-<main className="pt-24 pb-32 ">
+<main className="pt-24 pb-32  h-auto px-4 max-w-7xl mx-auto text-center">
 
 <section className="max-w-container-max mx-auto px-4 md:px-gutter mb-xl">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-lg items-center">

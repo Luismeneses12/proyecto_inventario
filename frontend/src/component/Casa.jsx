@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
+import PieDepagina from './PieDepagina';
 
 
 export default function Casa() {
@@ -49,7 +50,8 @@ export default function Casa() {
     }
 
 return (
-<div>
+  <>
+<div className='w-full m-0 p-0 leanding-none h-auto'>
         
 
       <main className="pt-24 pb-32 px-4 max-w-7xl mx-auto">
@@ -181,9 +183,9 @@ return (
         </section>
       </main>
 
-      
+     
     </div>
-
-    
+ <PieDepagina/>
+    </>
 )
 }

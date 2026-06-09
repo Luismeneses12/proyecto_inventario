@@ -1,5 +1,5 @@
-import { Children, useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Children, useState , useEffect } from 'react'
+import { Routes, Route, Link ,useNavigate, Navigate} from 'react-router-dom'
 
 import Usuario from './component/Usuario'
 import UsuarioGet from './component/UsuarioGet'
@@ -15,6 +15,7 @@ import ObtenerRecetas from './component/ObtenerRecetas'
 import InformeVentas from './component/InformeVentas'
 
 
+
 const RutasProtegidas = ({ children }) => {
   const usuario = localStorage.getItem('userLogueado')
   if (!usuario) {
@@ -23,14 +24,30 @@ const RutasProtegidas = ({ children }) => {
   return children
 }
 function App() {
+  const navigate = useNavigate()
+
+  const [sesionActiva, setSesionActiva] = useState(false)
+
+  useEffect (()=>{
+    const usuario = localStorage.getItem('userLogueado')
+    setSesionActiva(!!usuario)
+  },[])
+
+  const cerraSesion = ()=>{
+    localStorage.removeItem('userLogueado')
+    localStorage.removeItem('productoSeleccionado')
+    setSesionActiva(false)
+    alert('sesion cerrada correctamente. ')
+    navigate('/inicio-sesion')
+  }
+
   return (
-    // Contenedor principal: Ocupa toda la pantalla y organiza los elementos verticalmente
-    //min-h-screen w-full flex flex-col bg-stone-50
+    
     <div className="min-h-screen w-full flex flex-col bg-stone-50">
       
-      {/* MENÚ SUPERIOR (Navbar de ancho completo y pegajoso) */}
+      
       <header className="w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm sticky top-0 z-50">
-        {/* max-w-7xl y mx-auto centran el contenido en pantallas grandes, w-full ocupa todo en móviles */}
+        
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           
           {/* Lado Izquierdo: Logo y Enlaces (Desktop) */}
@@ -51,6 +68,7 @@ function App() {
                   Tienda
                 </Link>
               </li>
+              
               <li>
                 <Link to="/recetas" className="text-green-600 hover:text-green-800 font-medium transition-colors">
                   Recetario
@@ -67,8 +85,16 @@ function App() {
             >
               Registro
             </Link>
-            
-            <Link 
+            {sesionActiva ? (
+              <button 
+                onClick={cerraSesion}
+                className="bg-white-50 hover:bg-red-100 text-green-600 text-xs font-bold px-3 py-1.5 rounded-lg border border-black-200 transition-colors flex items-center gap-1"
+              >
+                <span className="material-symbols-outlined text-sm">logout</span>
+                Cerrar Sesión
+              </button>
+            ):
+            (<Link 
               to="/inicio-sesion" 
               className="flex items-center gap-2 p-1.5 pr-4 bg-green-600 hover:bg-green-700 rounded-full border border-green-700/10 shadow-sm transition-all"
             >
@@ -81,12 +107,13 @@ function App() {
                 />
               </div>
               <span className="text-sm font-bold text-white">Entrar</span>
-            </Link>
+            </Link>)}
           </div>
           
         </div>
       </header>
-
+    
+    
       {/* CONTENIDO PRINCIPAL DE LAS PÁGINAS */}
       {/* flex-1 hace que ocupe todo el espacio central. py-10 da espacio arriba/abajo. pb-28 evita que la barra de abajo tape el contenido */}
       <main className="flex-1 w-full max-w-7xl mx-auto p-4 py-10 pb-28">

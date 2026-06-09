@@ -5,7 +5,7 @@ export default function PieDepagina() {
   
     return (
     <>
-    <div className='w-full m-0 p-0 leanding-none h-auto text-center  text-white py-6 border-t border-green-700'>
+    <div className='w-full m-0 p-0 leanding-none h-25rem text-center  text-white py-6 border-t border-green-700 border-b border-green-700 bg-white-800'>
         <footer>
         <div className="bg-green-800 text-white py-6 text-center  border-t border-green-700">
             <p className="text-sm">&copy; 2026 Aguacateología. Todos los derechos reservados.</p>

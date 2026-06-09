@@ -51,7 +51,7 @@ export default function Casa() {
 
 return (
   <>
-<div className='w-full m-0 p-0 leanding-none h-auto'>
+<div className='w-full m-0 p-0 leanding-none h-auto py-6 margin-1.5 border-t border-green-700 border-b border-green-700'>
         
 
       <main className="pt-24 pb-32 px-4 max-w-7xl mx-auto">
@@ -185,7 +185,7 @@ return (
 
      
     </div>
- <PieDepagina/>
+     <PieDepagina/> 
     </>
 )
 }

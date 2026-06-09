@@ -66,7 +66,7 @@ Fecha estimada de entrega: {fecha_entrega}
 Para actualizar o cambiar la fecha o dirección de entrega, 
 por favor comunícate de inmediato al número: 3198231711.
 
-¡Gracias por apoyar a la Aguacateoliga!
+¡Gracias por apoyar a la Aguacateologia!
 """
                 mensaje.attach(MIMEText(cuerpo, 'plain', 'utf-8'))
 

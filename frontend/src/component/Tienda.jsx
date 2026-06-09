@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate,  } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Usuario from './Usuario'
+import Grafica from './Grafica'
 
 export default function Tienda() {
 
@@ -34,7 +35,7 @@ export default function Tienda() {
     }, [])
 
     return (    
-        <div className='min-h-screen bg-stone-50/50 p-4 sm:p-8' >
+        <div className='min-h-screen bg-stone-50/50 p-4 sm:p-8 border-t border-green-700' >
             <div className="max-w-6xl mx-auto">
                 <header className="flex justify-between items-center mb-8">
                     <h2 className="text-4xl font-bold text-green-800 mb-4">Nuestros Productos</h2>
@@ -113,7 +114,9 @@ export default function Tienda() {
                     ))}
                 </div>
             </div>
-            
+            <div>
+                <Grafica/>
+            </div>
             {/* Mensaje de contingencia si la base de datos está vacía */}
             {productos.length === 0 && (
                 <div className="text-center py-16 text-gray-400">

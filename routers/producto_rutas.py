@@ -1,23 +1,39 @@
 from flask import Blueprint, request, jsonify
 from model.models import db, Producto
+import os
+from werkzeug.utils import secure_filename
+
 
 producto_bp = Blueprint('producto', __name__)
+
+UPLOAD_FOLDER = 'static/uploads'
 
 
 @producto_bp.route('/productoPost', methods=['POST'])
 def crear_producto():
-    data = request.get_json()
+    
+    nombre = request.form.get('nombre')
+    descripcion = request.form.get('descripcion')
+    precio = request.form.get('precio')
+    cantidad = request.form.get('cantidad')
 
-    nombre = data.get('nombre')
-    descripcion = data.get('descripcion')
-    precio = data.get('precio')
-    cantidad = data.get('cantidad')
+    foto = request.files.get('foto')
+
+    ruta_foto = ""
+
+    if foto:
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+        nombre_archivo = secure_filename(foto.filename)
+        ruta_foto = os.path.join(UPLOAD_FOLDER, nombre_archivo)
+        foto.save(ruta_foto)
 
     nuevo_producto = Producto(
         nombre=nombre,
+        foto=ruta_foto,
         descripcion=descripcion,
         precio=precio,
-        cantidad=cantidad
+        cantidad=cantidad,
+        
     )
     db.session.add(nuevo_producto)
     db.session.commit()
@@ -30,9 +46,51 @@ def obtener_productos():
     for producto in productos:
         productos_list.append({
             "identificador": producto.identificador,
+            "foto": producto.foto,
             "nombre": producto.nombre,
             "descripcion": producto.descripcion,
             "precio": producto.precio,
             "cantidad": producto.cantidad
         })
     return jsonify(productos_list), 200
+
+@producto_bp.route('/obtenerProductosPorID/<int:identificador>', methods=['GET'])
+def obtener_producto_por_id(identificador):
+    producto = Producto.query.get(identificador)
+    if producto:
+        return jsonify({
+            "identificador": producto.identificador,
+            "foto": producto.foto,
+            "nombre": producto.nombre,
+            "descripcion": producto.descripcion,
+            "precio": producto.precio,
+            "cantidad": producto.cantidad
+        }), 200
+    else:
+        return jsonify({"message": "Producto no encontrado"}), 404
+
+@producto_bp.route('/eliminarProducto/<int:identificador>', methods=['DELETE'])
+def eliminar_productods(identificador):
+    producto = Producto.query.get(identificador)
+    
+    if   not producto :
+        return jsonify({"message": "Producto no encontrado"}), 404
+    else:
+        db.session.delete(producto)
+        db.session.commit()
+        return jsonify({"message": "Producto eliminado exitosamente"}), 200
+    
+@producto_bp.route('/actualizarProducto/<int:identificador>', methods=['PUT'])
+def actualizar_producto(identificador):
+    productos  = Producto.query.get(identificador)
+
+    if productos:
+        data = request.get_json()
+        productos.nombre = data.get('nombre', productos.nombre)
+        productos.descripcion = data.get('descripcion', productos.descripcion)
+        productos.precio = data.get('precio', productos.precio)
+        productos.cantidad = data.get('cantidad', productos.cantidad)
+
+        db.session.commit()
+        return jsonify({"message": "Producto actualizado exitosamente"}), 200
+    

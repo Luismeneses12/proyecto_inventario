@@ -16,7 +16,9 @@
     outline-offset: 2px;
   }
 }
-
+body{
+  min-height: max(884px, 100dvh);
+}
 .hero {
   position: relative;
 

@@ -1,58 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
-import PieDepagina from './PieDepagina';
-
 
 export default function Casa() {
 
-    const [nombre, setNombre] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [consulta, setConsulta] = useState('');
-    const [mensaje, setMensaje] = useState('');
-    
-    const postConsulta = async (e) => {
-      e.preventDefault();
-      try{
-        const res = await fetch('http://127.0.0.1:5000/consulta', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            nombre: nombre,
-            correo: correo,
-            consulta: consulta,
-            mensaje: mensaje
-          })
-        })
-        const data = await res.json();
-         if (res.status === 400 || data.error === 'formulario_incompleto') {
-                
-                alert('⚠️ Este correo ya se encuentra registrado. Intenta iniciar sesión.')
-            } else if (res.ok) {
-                alert('🎉 ¡Formulario registrado exitosamente en Aguacateología!')
-                                
-                setNombre('')
-                setCorreo('')
-                setConsulta('')
-                setMensaje('')
-
-            } else {
-                alert(data.message || 'Hubo un problema con el registro')
-            }
-
-        
-      }
-      catch(error){
-    console.error("Error al enviar la consulta:", error);
-      }
-    }
 
 return (
-  <>
-<div className='w-full m-0 p-0 leanding-none h-auto py-6 margin-1.5 border-t border-green-700 border-b border-green-700'>
-        
+<div>
+        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-stone-50 dark:bg-stone-950 text-green-800 dark:text-green-400 border-b border-stone-200 dark:border-stone-800 shadow-sm shadow-green-900/5">
+        <div className="flex items-center gap-4">
+          <button className="material-symbols-outlined hover:opacity-80 transition-opacity scale-95 active:transition-transform">
+            menu
+          </button>
+          <h1 className="font-serif font-black text-green-900 dark:text-green-100 italic font-bold text-lg tracking-tight">
+            Oro Verde
+          </h1>
+        </div>
+        <div className="flex items-center gap-4">
+          <button className="material-symbols-outlined hover:opacity-80 transition-opacity scale-95 active:transition-transform">
+            shopping_cart
+          </button>
+        </div>
+      </header>
 
       <main className="pt-24 pb-32 px-4 max-w-7xl mx-auto">
         {/* TITULO SECCIÓN */}
@@ -74,13 +42,13 @@ return (
               <p className="text-stone-600 mb-6">
                 Nuestro equipo técnico y de cosecha está disponible para resolver tus inquietudes sobre pedidos, variedades o suscripciones.
               </p>
-              <button className="w-full bg-green-700 text-white py-3 px-6 rounded-lg font-medium shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2" type='tel:3192831711' >
+              <button className="w-full bg-green-700 text-white py-3 px-6 rounded-lg font-medium shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
                 Atención personalizada por WhatsApp
               </button>
             </div>
 
             <div className="bg-stone-50 p-8 rounded-xl border border-stone-100">
-              <h4 className="text-xs font-bold text-green-600 uppercase mb-4 tracking-widest">Nuestra Comunidad</h4>
+              <h4 className="text-xs font-bold text-stone-400 uppercase mb-4 tracking-widest">Nuestra Comunidad</h4>
               <div className="flex gap-4 mb-6">
                 <a className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-800 hover:scale-105 transition-transform" href="#!">
                   <span className="material-symbols-outlined">public</span>
@@ -95,7 +63,7 @@ return (
               <div className="space-y-4 text-stone-600">
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-green-700">location_on</span>
-                  <p> Cosecha de Colombia.</p>
+                  <p>Valle de la Cosecha, Sector Artesanal Local 14, Región del Oro Verde.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="material-symbols-outlined text-green-700">schedule</span>
@@ -124,22 +92,21 @@ return (
               <h3 className="text-2xl font-semibold text-green-800 mb-4">Formulario de Consultas</h3>
               <p className="text-stone-500 mb-8">Escríbenos y te responderemos en menos de 24 horas hábiles.</p>
               
-              <form className="space-y-6" onSubmit={postConsulta}>
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-stone-600 px-1">Nombre Completo</label>
-                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="Ej: Maria García" type="text" value={nombre} onChange={(e)=>{setNombre(e.target.value)}} required/>
+                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="Ej: Maria García" type="text" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-stone-600 px-1">Correo Electrónico</label>
-                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="maria@ejemplo.com" type="email" value={correo} onChange={(e)=>{setCorreo(e.target.value)}}  required/>
+                    <input className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow" placeholder="maria@ejemplo.com" type="email" />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium text-stone-600 px-1">consulta </label>
-                  <select className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow appearance-none" value={consulta} onChange={ (e)=>{setConsulta(e.target.value) } } required> 
-                    
+                  <label className="text-sm font-medium text-stone-600 px-1">Asunto</label>
+                  <select className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow appearance-none">
                     <option>Consulta General</option>
                     <option>Suscripción Semanal</option>
                     <option>Eventos y Catering</option>
@@ -149,14 +116,17 @@ return (
 
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium text-stone-600 px-1">Mensaje</label>
-                  <textarea className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow resize-none" placeholder="¿En qué podemos ayudarte hoy?" rows="5" value={mensaje} onChange={(e)=>{setMensaje(e.target.value)}}></textarea>
+                  <textarea className="bg-stone-50 border-none rounded-lg p-4 focus:ring-2 focus:ring-green-700 outline-none transition-shadow resize-none" placeholder="¿En qué podemos ayudarte hoy?" rows="5"></textarea>
                 </div>
 
+                <div className="flex items-center gap-3 pt-4">
+                  <input className="w-5 h-5 rounded border-stone-300 text-green-700 focus:ring-green-700" type="checkbox" id="privacy" />
+                  <label htmlFor="privacy" className="text-sm text-stone-600">Acepto la política de privacidad y tratamiento de datos artesanales.</label>
+                </div>
 
                 <button className="w-full bg-green-700 text-white py-4 rounded-lg font-bold text-lg mt-4 shadow-md hover:translate-y-[-2px] transition-all" type="submit">
                   Enviar Consulta
                 </button>
-               
               </form>
             </div>
             <div className="mt-6 text-center">
@@ -183,9 +153,24 @@ return (
         </section>
       </main>
 
-     
+      {/* NAVEGACIÓN INFERIOR (Mobile) */}
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">home</span>
+          <Link to="/paginaPrincipal" className="text-[11px] font-medium">Inicio</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all" href="#!">
+          <span className="material-symbols-outlined">eco</span>
+          
+          <Link to="/tienda"  className="text-[11px] font-medium">Tienda</Link>
+        </a>
+        <a className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1" href="#!">
+          <span className="material-symbols-outlined">chat</span>
+          <span className="text-[11px] font-bold">Contacto</span>
+        </a>
+      </nav>
     </div>
-     <PieDepagina/> 
-    </>
+
+    
 )
 }

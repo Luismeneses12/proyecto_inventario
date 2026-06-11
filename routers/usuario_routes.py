@@ -1,5 +1,8 @@
 from flask import Blueprint, request, jsonify
-from model.models import db, Usuario, validacionCorreo
+from model.models import db, Usuario, validacionCorreo 
+
+
+
 
 usuario_bp = Blueprint('usuario', __name__)
 
@@ -103,12 +106,3 @@ def eliminar_usuario(identificador):
     
     return jsonify({'message': 'Usuario eliminado exitosamente'}), 200
 
-
-
-@usuario_bp.route('/recuperar_contraeña/<string:correo>', methods=['GET'])
-def recuperar_contraseña (correo):
-    usuario = Usuario.query.filter_by(correo=correo).first()
-    if not usuario:
-        return jsonify({'message': 'Usuario no encontrado'}), 404
-    
-    return jsonify({'contraseña': usuario.contraseña}), 200

@@ -16,6 +16,14 @@ class  validacionCorreo(db.Model):
     valorEnviado = db.Column(db.Integer,default=0, nullable=False)
     identificadorUsuario = db.Column(db.Integer, db.ForeignKey('usuario.identificador'), nullable=False)
 
+class recuperacionContrasena(db.Model):
+    __tablename__ = "recuperacionContrasena"
+    identificador = db.Column(db.Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
+    valorEnviado = db.Column(db.Integer,default=0, nullable=False)
+    codigoVerificacion = db.Column(db.String(20),nullable=False)
+    identificadorUsuario = db.Column(db.Integer, db.ForeignKey('usuario.identificador'), nullable=False)
+    
+
 class Producto(db.Model):
     __tablename__ = 'producto'
 

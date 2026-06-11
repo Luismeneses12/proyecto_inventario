@@ -13,6 +13,7 @@ import Tienda from './component/Tienda'
 import RecuperaContraseña from './component/RecuperaContraseña'
 import ObtenerRecetas from './component/ObtenerRecetas'
 import InformeVentas from './component/InformeVentas'
+import ModuloAyuda from './component/ModuloAyuda'
 
 
 
@@ -40,6 +41,8 @@ function App() {
     alert('sesion cerrada correctamente. ')
     navigate('/inicio-sesion')
   }
+  
+   const [mostrarAyuda, setMostrarAyuda] = useState(false)
 
   return (
     
@@ -135,8 +138,32 @@ function App() {
          } />
         </Routes>
       </main>
+      {/*  modulo de ayuda*/}
+      {/* CONTENEDOR FLOTANTE ESTÁTICO (Colócalo dentro de App.jsx para persistencia global) */}
+<div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center">
+  <button 
+    onClick={() => setMostrarAyuda(true)}
+    className="group bg-white hover:bg-green-50 text-green-800 font-semibold px-3 py-4 rounded-l-2xl shadow-[rgba(0,0,0,0.1)_0px_4px_12px] border-l border-y border-stone-200 transition-all duration-300 flex flex-col items-center gap-1.5 active:scale-95 translate-x-2 hover:translate-x-0"
+  >
+    {/* Imagen/Icono con animación suave al pasar el mouse */}
+    <img 
+      src="icons8-help-30.png" 
+      alt="Ayuda" 
+      className="w-6 h-6 object-contain group-hover:scale-110 transition-transform"
+    />
+    
+    {/* Texto rotado o vertical para que ocupe menos espacio lateral */}
+    <span className="text-[11px] uppercase tracking-wider font-bold writing-mode-vertical">
+      Ayuda
+    </span>
+  </button>
 
-      {/* NAVEGACIÓN INFERIOR (Mobile Fija Abajo) */}
+  {/* Componente del Modal que se dispara */}
+  <ModuloAyuda isOpen={mostrarAyuda} onClose={() => setMostrarAyuda(false)} />
+</div>
+
+
+      {/*navegacion  */}
       <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
         <Link to="/" className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all">
           <span className="material-symbols-outlined">home</span>
@@ -153,7 +180,7 @@ function App() {
           <span className="text-[11px] font-bold">Contacto</span>
         </Link>
       </nav>
-
+        
     </div>
   )
 }

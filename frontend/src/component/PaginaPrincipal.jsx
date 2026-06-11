@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Tienda from './Tienda'
 import Casa from './Casa'
 
+
+
 export default function PaginaPrincipal() {
 
 
@@ -85,6 +87,7 @@ export default function PaginaPrincipal() {
 </div>
 </div>
 </section>
+
 <section className='w-full m-0 p-0 leanding-none'>
     <Tienda/>
 </section>

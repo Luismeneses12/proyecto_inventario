@@ -14,6 +14,7 @@ import RecuperaContraseña from './component/RecuperaContraseña'
 import ObtenerRecetas from './component/ObtenerRecetas'
 import InformeVentas from './component/InformeVentas'
 import ModuloAyuda from './component/ModuloAyuda'
+import EstableserContrasena from './component/EstableserContrasena'
 
 
 
@@ -135,8 +136,10 @@ function App() {
           {<RutasProtegidas>
              <InformeVentas />
           </RutasProtegidas>
-         } />
+         } />       
+        <Route path='/restableserContraseña' element={<EstableserContrasena/>}/>
         </Routes>
+        
       </main>
       {/*  modulo de ayuda*/}
       {/* CONTENEDOR FLOTANTE ESTÁTICO (Colócalo dentro de App.jsx para persistencia global) */}

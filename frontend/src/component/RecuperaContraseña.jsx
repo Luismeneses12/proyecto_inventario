@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom'
 
 export default function RecuperaContraseña() {
   const navigate = useNavigate()
+  useEffect(
+    navigate
+    ,[])
   
- 
 
   const [correo, setCorreo] = useState("")
 
@@ -30,6 +32,7 @@ export default function RecuperaContraseña() {
 
     if (res.ok){
       alert("correo encontrado con exito")
+      navigate('/restableserContraseña')
     }
     else if(data.error){
       alert(data.error)

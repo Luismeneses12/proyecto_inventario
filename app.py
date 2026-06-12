@@ -12,6 +12,8 @@ from routers.contraseña_router import recuper_bp
 
 from instance.enviarCorreo import enviar_correo
 from instance.enviarCorreoVentas import enviar_correo_ventas
+from instance.enviarCorreoRecuperacion import enviar_correo_recuperacion_contrasena
+
 
 def create_app():
    app = Flask(__name__, static_folder='static')
@@ -30,9 +32,11 @@ def create_app():
    app.register_blueprint(fomulario_bp)
    app.register_blueprint(receta_bp )
    app.register_blueprint(ventas_bp)
-   app.register_blueprint(recuper_bp)
-
    enviar_correo_ventas()
+   app.register_blueprint(recuper_bp)
+   enviar_correo_recuperacion_contrasena()
+
+   
    
    
    CORS(app )

@@ -20,3 +20,20 @@ def recuperar_contrasena():
         db.session.add(nueva_recuperacion)
         db.session.commit()
         return jsonify({"mensaje":"correo encontrado"}),200
+
+
+@recuper_bp.route("/modificarContrasena", methods=['PUT','POST'])
+def modificar_contrasena():
+    data= request.get_json()
+    codigoVerificacion = str(data.get("codigoVerificacion"))
+    nuevaContrasena = data.get("nuevaContrasena")
+
+    recuperacion = recuperacionContrasena.query.filter_by(codigoVerificacion=codigoVerificacion).first()
+    if recuperacion:
+        usuario = Usuario.query.get(recuperacion.identificadorUsuario)
+        usuario.contraseña = nuevaContrasena
+        db.session.commit()
+        return jsonify({"mensaje": "Contraseña actualizada exitosamente"}), 200
+    return jsonify({"mensaje": "Código de verificación inválido"}), 400
+
+    

@@ -4,6 +4,7 @@ import { useNavigate,  } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Usuario from './Usuario'
 import Grafica from './Grafica'
+import { apiFetch, API_BASE_URL } from '../config'
 
 export default function Tienda() {
 
@@ -13,7 +14,7 @@ export default function Tienda() {
     const haldGet = async () => {
         try { 
             // 1. UNIFICADO: Usamos 127.0.0.1 de manera idéntica en todo el archivo
-            const res = await fetch('http://127.0.0.1:5000/productosGet', {
+            const res = await apiFetch('/productosGet', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ export default function Tienda() {
                                 {/* 🔥 SOLUCIÓN DE IMAGEN: URL unificada con barra de escape y respaldo */}
                                 <img 
                                 // 🔥 LA SOLUCIÓN: Validamos si producto.foto existe antes de armar la URL de Flask
-                                src={producto && producto.foto ? `http://127.0.0.1:5000/${producto.foto}` : "https://via.placeholder.com/400x300?text=Aguacate+Sin+Foto+🥑"} 
+                                src={producto && producto.foto ? `${API_BASE_URL}/${producto.foto}` : "https://via.placeholder.com/400x300?text=Aguacate+Sin+Foto+🥑"} 
                                 alt={producto?.nombre || "Producto"} 
                                 className="w-full h-48 object-cover rounded-md mb-4" 
                                 

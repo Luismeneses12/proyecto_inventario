@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { apiFetch } from '../config'
 
 
 export default function RecuperaContraseña() {
@@ -16,7 +17,7 @@ export default function RecuperaContraseña() {
    const tomarCorreo = async (e) => {
     e.preventDefault()
    try{
-    const res = await fetch('http://127.0.0.1:5000/recuperarContrasena',
+    const res = await apiFetch('/recuperarContrasena',
      
       {
       method: 'POST',

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { apiFetch } from '../config'
 
 
 function ActualizacionProductos() {
@@ -13,7 +14,7 @@ function ActualizacionProductos() {
     const actualizarProducto = async (e)=>{
         e.preventDefault()
        try{
-        const res = await fetch(`http://127.0.0.1:5000/actualizarProducto/${identificador}`, {
+        const res = await apiFetch(`/actualizarProducto/${identificador}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'

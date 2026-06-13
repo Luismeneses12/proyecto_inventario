@@ -1,5 +1,6 @@
 import React from 'react'   
 import { useState, useEffect } from 'react'
+import { apiFetch } from '../config'
 
 
 export default function UsuarioGet() {
@@ -8,7 +9,7 @@ export default function UsuarioGet() {
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/usuarios')
+                const response = await apiFetch('/usuarios')
                 const data = await response.json()
                 setUsuarios(data)
             } catch (error) {

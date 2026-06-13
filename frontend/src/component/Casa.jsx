@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
 import PieDepagina from './PieDepagina';
+import { apiFetch } from '../config';
 
 
 export default function Casa() {
@@ -14,7 +15,7 @@ export default function Casa() {
     const postConsulta = async (e) => {
       e.preventDefault();
       try{
-        const res = await fetch('http://127.0.0.1:5000/consulta', {
+        const res = await apiFetch('/consulta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../style/StyleRegistro.css'
+import { apiFetch } from '../config'
 
 export default function Usuario() {
     
@@ -18,7 +19,7 @@ export default function Usuario() {
         e.preventDefault()
         
         try {
-            const res = await fetch('http://127.0.0.1:5000/usuario', {
+            const res = await apiFetch('/usuario', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

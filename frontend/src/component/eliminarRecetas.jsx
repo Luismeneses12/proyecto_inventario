@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { apiFetch } from '../config'
 
 export default function eliminarRecetas() {
     const [identificacionRecetas, setIdentificacionRecetas] = React.useState("")
@@ -8,7 +9,7 @@ export default function eliminarRecetas() {
     try{
         const eliminarRecetas = async (e)=>{
             e.preventDefault()
-        const res = await fetch(`http://127.0.0.1:5000/eliminarReceta/${identificacionRecetas}`, {
+        const res = await apiFetch(`/eliminarReceta/${identificacionRecetas}`, {
             method: 'DELETE'
         })
         const data = await res.json()

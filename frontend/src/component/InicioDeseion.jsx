@@ -4,6 +4,7 @@ import '../style/StyleLogin.css'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Postproducto from './Postproducto'
+import { apiFetch } from '../config'
 
 
 export default function InicioDeseion() {
@@ -19,7 +20,7 @@ export default function InicioDeseion() {
         e.preventDefault()
         
         try{
-            const res = await fetch('http://127.0.0.1:5000/login', {
+            const res = await apiFetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

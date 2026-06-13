@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { apiFetch } from '../config'
 
 export default function InformeVentas() {
     const navigate = useNavigate()
@@ -53,7 +54,7 @@ export default function InformeVentas() {
         }
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/ventasPost', {
+            const res = await apiFetch('/ventasPost', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

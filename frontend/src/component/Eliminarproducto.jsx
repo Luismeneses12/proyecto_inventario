@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { apiFetch } from '../config'
 
 export default function Eliminarproducto() {
  // 1. Inicializamos con string vacío para evitar errores de "uncontrolled component"
@@ -18,7 +19,7 @@ export default function Eliminarproducto() {
 
         try {
             // 4. Petición dinámica al backend
-            const res = await fetch(`http://127.0.0.1:5000/eliminarProducto/${idAEliminar}`, {
+            const res = await apiFetch(`/eliminarProducto/${idAEliminar}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

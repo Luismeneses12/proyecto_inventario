@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { apiFetch } from '../config'
 
 
 export default function IngresarRecetas() {
@@ -26,7 +27,7 @@ export default function IngresarRecetas() {
 
             // 3. ATENCIÓN: Verifica si tu backend usa prefijo. 
             // Si registraste el blueprint con url_prefix='/recetas', la URL debe ser: 'http://127.0.0.1:5000/recetas/postReceta'
-            const res = await fetch('http://127.0.0.1:5000/postReceta', {
+            const res = await apiFetch('/postReceta', {
                 method: 'POST',
                 // IMPORTANTE: NO pongas 'Content-Type': 'application/json'. 
                 // Al quitarlo, el navegador configura automáticamente el "multipart/form-data" necesario para archivos.

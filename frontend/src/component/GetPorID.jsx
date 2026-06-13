@@ -1,4 +1,5 @@
 import React from 'react'
+import { apiFetch } from '../config'
 
 export default function GetPorID() {
     const [productoID, setProductoID] = React.useState()
@@ -6,7 +7,7 @@ export default function GetPorID() {
     const obtenerProductoPorID = async(e)=>{
         e.preventDefault()
         try{
-            const res = await fetch(`http://127.0.0.1:5000/obtenerProductosPorID/${productoID}`, {
+            const res = await apiFetch(`/obtenerProductosPorID/${productoID}`, {
                 method:'GET',
                 headers: {
                     'Content-Type': 'application/json'

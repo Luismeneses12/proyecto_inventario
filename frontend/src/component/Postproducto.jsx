@@ -7,6 +7,7 @@ import GetPorID from './GetPorID'
 import Eliminarproducto from './Eliminarproducto'
 import ActualizacionProductos from './ActualizacionProductos'
 import IngresarRecetas from './IngresarRecetas'
+import { apiFetch } from '../config'
 
 export default function Postproducto() {
      const [nombre, setNombre] = useState("")
@@ -27,7 +28,7 @@ export default function Postproducto() {
         if (foto) {
           formData.append('foto', foto)
         }
-         const res = await fetch ('http://127.0.0.1:5000/productoPost', {
+         const res = await apiFetch('/productoPost', {
           method: 'POST',
           body: formData
         })

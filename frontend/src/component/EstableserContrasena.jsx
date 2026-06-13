@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { apiFetch } from '../config'
 
 export default function EstableserContrasena() {
   const navigate = useNavigate()
@@ -11,7 +12,7 @@ export default function EstableserContrasena() {
     
     try {
       // 🔥 CORRECCIÓN CRÍTICA: Cambiado ['POST','PUT'] por un string único "POST"
-      const res = await fetch("http://127.0.0.1:5000/modificarContrasena", {
+      const res = await apiFetch("/modificarContrasena", {
         method: "POST", 
         headers: {
           'Content-Type': 'application/json'

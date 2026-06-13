@@ -56,6 +56,10 @@ function App() {
           
           {/* Lado Izquierdo: Logo y Enlaces (Desktop) */}
           <div className="flex items-center gap-8">
+            {/* Logo */}
+            <div className='w-10 h-10 rounded-full overflow-hidden bg-gray-300 border border-white'>
+              <img src="logoAguacateologia.png" alt="logo" className="w-full h-full object-cover"/>
+            </div>
             <h1 className="text-xl font-bold text-green-800 tracking-tight">
               AGUACATE<span className="text-gray-900">OLOGIA</span>
             </h1>

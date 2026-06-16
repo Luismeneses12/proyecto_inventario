@@ -54,7 +54,7 @@ export default function Tienda() {
                                 <img 
                                 // 🔥 LA SOLUCIÓN: Validamos si producto.foto existe antes de armar la URL de Flask
                                 src={producto && producto.foto ? `${API_BASE_URL}/${producto.foto}` : "https://via.placeholder.com/400x300?text=Aguacate+Sin+Foto+🥑"} 
-                                alt={producto?.nombre || "Producto"} 
+                                alt={producto.nombre || "Producto"} 
                                 className="w-full h-48 object-cover rounded-md mb-4" 
                                 
                                 // Respaldo extra por si el campo tiene texto pero el archivo físico no existe en el disco duro

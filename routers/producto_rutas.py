@@ -82,15 +82,29 @@ def eliminar_productods(identificador):
     
 @producto_bp.route('/actualizarProducto/<int:identificador>', methods=['PUT'])
 def actualizar_producto(identificador):
-    productos  = Producto.query.get(identificador)
+    producto = Producto.query.filter_by(identificador=identificador).first()
 
-    if productos:
-        data = request.get_json()
-        productos.nombre = data.get('nombre', productos.nombre)
-        productos.descripcion = data.get('descripcion', productos.descripcion)
-        productos.precio = data.get('precio', productos.precio)
-        productos.cantidad = data.get('cantidad', productos.cantidad)
+    if not producto:
+        return jsonify({"message": "Producto no encontrado"}), 404
 
-        db.session.commit()
-        return jsonify({"message": "Producto actualizado exitosamente"}), 200
-    
+    nombre = request.form.get('nombre')
+    descripcion = request.form.get('descripcion')
+    precio = request.form.get('precio')
+    cantidad = request.form.get('cantidad')
+    foto = request.files.get('foto')
+
+    if foto:
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+        nombre_archivo = secure_filename(foto.filename)
+        ruta_foto = os.path.join(UPLOAD_FOLDER, nombre_archivo)
+        foto.save(ruta_foto)
+        producto.foto = ruta_foto
+
+    producto.nombre = nombre or producto.nombre
+    producto.descripcion = descripcion or producto.descripcion
+    producto.precio = precio or producto.precio
+    producto.cantidad = cantidad or producto.cantidad
+
+    db.session.commit()
+
+    return jsonify({"message": "Producto actualizado exitosamente"}), 200

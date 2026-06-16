@@ -1,9 +1,13 @@
 import React from 'react'
 import { apiFetch } from '../config'
+import { useState } from 'react'
+
 
 export default function GetPorID() {
+
     const [productoID, setProductoID] = React.useState()
     const [producto, setProducto] = React.useState(null)
+
     const obtenerProductoPorID = async(e)=>{
         e.preventDefault()
         try{
@@ -43,7 +47,7 @@ export default function GetPorID() {
                         type="submit"
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-md flex items-center justify-center"
                     >
-                        <span className="material-symbols-outlined">search</span>
+                        <span className="material-symbols-outlined">buscar</span>
                     </button>
                 </div>
 
@@ -55,6 +59,17 @@ export default function GetPorID() {
                             <div className="flex justify-between border-b border-indigo-100 pb-1">
                                 <span className="text-gray-500 text-sm">Nombre:</span>
                                 <span className="font-bold text-gray-800">{producto.nombre}</span>
+                            </div>
+                            <div>
+                                <img 
+                                    src={producto.foto} 
+                                    alt={producto.nombre} 
+                                    className="w-full h-48 object-cover rounded-md mb-4"
+                                />
+                            </div>
+                            <div className="flex justify-between border-b border-indigo-100 pb-1">
+                                <span className="text-gray-500 text-sm">descripcion:</span>
+                                <span className="font-bold text-green-600">${producto.descripcion}</span>
                             </div>
                             <div className="flex justify-between border-b border-indigo-100 pb-1">
                                 <span className="text-gray-500 text-sm">Precio:</span>

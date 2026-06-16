@@ -7,6 +7,7 @@ function ActualizacionProductos() {
 
     const [identificador, setIdentificador] = React.useState('')
     const [nombre, setNombre] = React.useState('')
+    const [foto, setFoto] = React.useState(null)
     const [descripcion, setDescription] = React.useState('')
     const [precio, setPrecio] = React.useState('')
     const [cantidad, setCantidad] = React.useState('')
@@ -14,25 +15,40 @@ function ActualizacionProductos() {
     const actualizarProducto = async (e)=>{
         e.preventDefault()
        try{
+        const formData = new FormData()
+        formData.append('nombre', nombre)
+        formData.append('descripcion', descripcion)
+        formData.append('precio', precio)
+        formData.append('cantidad', cantidad)
+        if (foto) {
+          formData.append('foto', foto)
+        }
+
         const res = await apiFetch(`/actualizarProducto/${identificador}`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ nombre, descripcion, precio, cantidad })
+          
+          body: formData
         })
-        const data =  res.json.get() 
-        if(res.error || data  == "erro  en la respuesta del servidor "){alert("problema en modificar el productpo ")}
-        else if (res.ok || data.succeful){alert("producto actualizado con exito ") 
+        const data =  await res.json()
+        
+        if(res.error || data  == "erro  en la respuesta del servidor "){
+            alert("problema en modificar el productpo ")}
+        else if (res.ok || data.succeful){
+            alert("producto actualizado con exito ") 
             setIdentificador("")
             setNombre("")
+            setFoto(null)
             setDescription("")
             setPrecio("")
             setCantidad("")
         }
+        else{
+            alert(data.error || "Hubo un error al actualizar el producto")
+        }
        }
        catch(error){
         console.error('Error al actualizar el producto:', error)
+        alert('Error al actualizar el producto')
       
       }
     }
@@ -66,6 +82,12 @@ function ActualizacionProductos() {
                         value={nombre} 
                         onChange={(e) => setNombre(e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 outline-none transition"
+                    />
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => setFoto(e.target.files[0])}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200"
                     />
                     <textarea 
                         placeholder="Nueva descripción" 

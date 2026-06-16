@@ -7,6 +7,7 @@ receta_bp = Blueprint('recetas', __name__)
 
 UPLOAD_FOLDER = 'static/uploads'
 
+
 @receta_bp.route('/postReceta', methods=['POST'])
 def crear_receta():
 
@@ -72,3 +73,32 @@ def eliminar_receta(identificacionRecetas):
     db.session.delete(receta)
     db.session.commit()
     return jsonify({"message": "Receta eliminada exitosamente"}), 200
+
+@receta_bp.route('/buscarReceta/<string:titulo>', methods=['GET'])
+def buscar_receta(titulo):
+    try:
+        # 🥑 CORRECCIÓN: Buscamos en la columna 'titulo' de forma flexible (insensible a mayúsculas/minúsculas)
+        # El operador .like(f"%{titulo}%") busca cualquier receta que CONTENGA esa palabra
+        resultados = Recetas.query.filter(Recetas.titulo.like(f"%{titulo}%")).all()
+
+        # Si la lista de resultados no está vacía
+        if resultados:        
+            recetas_list = []
+            for receta in resultados:
+                recetas_list.append({
+                    "identificadorRecetas": receta.identificacionRecetas,
+                    "titulo": receta.titulo,
+                    "foto": receta.foto,
+                    "ingredientes": receta.ingredientes,
+                    "instrucciones": receta.instrucciones
+                })
+            
+            # 🔥 IMPORTANTE: Devolvemos una LISTA [] de objetos para que el .map() de React funcione perfectamente
+            return jsonify(recetas_list), 200
+        
+        else:
+            # Si no hay coincidencias, devolvemos un 404 con un mensaje limpio
+            return jsonify({"message": "Receta no encontrada"}), 404
+
+    except Exception as e:
+        return jsonify({"error": "Error interno en el servidor", "detalle": str(e)}), 500

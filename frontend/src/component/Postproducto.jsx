@@ -33,7 +33,9 @@ export default function Postproducto() {
           body: formData
         })
         const data = await res.json()
-        if (res.ok) {          alert("🎉 ¡Producto ingresado correctamente en el inventario!")
+
+        if (res.ok) { 
+          alert("🎉 ¡Producto ingresado correctamente en el inventario!")
           setNombre("")
           setDescription("")
           setPrecio("")

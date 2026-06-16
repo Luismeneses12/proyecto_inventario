@@ -41,6 +41,15 @@ export default function Tienda() {
                 <header className="flex justify-between items-center mb-8">
                     <h2 className="text-4xl font-bold text-green-800 mb-4">Nuestros Productos</h2>
                 </header>
+                <div className="mb-8">
+                    <button 
+                        type='button' 
+                        onClick={() => navigate("/recetas")}
+                        className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 px-5 py-2.5 rounded-xl text-sm font-bold transition-all border border-emerald-200 shadow-sm active:scale-95"
+                    >
+                        📖 Explorar Recetario
+                    </button>
+                </div>
 
                 {/* Contenedor Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -118,6 +127,7 @@ export default function Tienda() {
             <div>
                 <Grafica/>
             </div>
+            
             {/* Mensaje de contingencia si la base de datos está vacía */}
             {productos.length === 0 && (
                 <div className="text-center py-16 text-gray-400">
@@ -125,6 +135,9 @@ export default function Tienda() {
                     <p className="mt-2 font-medium">No se encontraron productos disponibles por el momento.</p>
                 </div>
             )}
+
+            
         </div>
+        
     )
 }

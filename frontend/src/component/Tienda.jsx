@@ -84,7 +84,7 @@ export default function Tienda() {
                             <div className="p-5 pt-0">
                                 <div className="flex justify-between items-center mt-2">
                                     <span className="text-2xl font-extrabold text-green-800">
-                                        ${producto.precio ? producto.precio.toLocaleString() : '0'}
+                                        ${producto.precio ? producto.precio.toLocaleString() : '0'} COP
                                     </span>
                                     <span className={`text-xs font-semibold px-2 py-1 rounded ${producto.cantidad > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                         {producto.cantidad > 0 ? `Stock: ${producto.cantidad}` : 'Agotado'}

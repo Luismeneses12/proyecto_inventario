@@ -1,5 +1,5 @@
 import { Children, useState , useEffect } from 'react'
-import { Routes, Route, Link ,useNavigate, Navigate} from 'react-router-dom'
+import { Routes, Route, Link ,useNavigate, Navigate , useLocation} from 'react-router-dom'
 
 import Usuario from './component/Usuario'
 import UsuarioGet from './component/UsuarioGet'
@@ -27,6 +27,8 @@ const RutasProtegidas = ({ children }) => {
 }
 function App() {
   const navigate = useNavigate()
+  const location = useLocation()
+
 
   const [sesionActiva, setSesionActiva] = useState(false)
 
@@ -44,13 +46,13 @@ function App() {
   }
   
    const [mostrarAyuda, setMostrarAyuda] = useState(false)
+  const esRutaAdmin = location.pathname.startsWith('/bienvenida') 
 
+  
   return (
     
     <div className="min-h-screen w-full flex flex-col bg-stone-50">
-      
-      
-      <header className="w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm sticky top-0 z-50">
+       <header className="w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm sticky top-0 z-50">
         
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           
@@ -121,7 +123,6 @@ function App() {
         </div>
       </header>
     
-    
       {/* CONTENIDO PRINCIPAL DE LAS PÁGINAS */}
       {/* flex-1 hace que ocupe todo el espacio central. py-10 da espacio arriba/abajo. pb-28 evita que la barra de abajo tape el contenido */}
       <main className="flex-1 w-full max-w-7xl mx-auto p-4 py-10 pb-28">
@@ -170,23 +171,24 @@ function App() {
 </div>
 
 
-      {/*navegacion  */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 h-20 bg-white/90 backdrop-blur-md border-t border-stone-100 shadow-[0_-4px_12px_rgba(46,90,39,0.08)]">
-        <Link to="/" className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all">
-          <span className="material-symbols-outlined">home</span>
-          <span className="text-[11px] font-medium">Inicio</span>
-        </Link>
-        
-        <Link to="/tienda" className="flex flex-col items-center justify-center text-stone-400 px-4 py-1 hover:text-green-700 transition-all">
-          <span className="material-symbols-outlined">eco</span>
-          <span className="text-[11px] font-medium">Tienda</span>
-        </Link>
-        
-        <Link to="/contacto" className="flex flex-col items-center justify-center bg-green-50 text-green-900 rounded-xl px-4 py-1 hover:bg-green-100 transition-all">
-          <span className="material-symbols-outlined">chat</span>      
-          <span className="text-[11px] font-bold">Contacto</span>
-        </Link>
-      </nav>
+      {!esRutaAdmin && (
+        <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 h-16 bg-white/85 backdrop-blur-lg border-t border-stone-200/50 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+          <Link to="/" className={`flex flex-col items-center justify-center transition-all ${location.pathname === '/' ? 'text-emerald-600 font-bold scale-105' : 'text-stone-400'}`}>
+            <span className="material-symbols-outlined text-xl">home</span>
+            <span className="text-[10px] tracking-tight mt-0.5">Inicio</span>
+          </Link>
+          
+          <Link to="/tienda" className={`flex flex-col items-center justify-center transition-all ${location.pathname === '/tienda' ? 'text-emerald-600 font-bold scale-105' : 'text-stone-400'}`}>
+            <span className="material-symbols-outlined text-xl">eco</span>
+            <span className="text-[10px] tracking-tight mt-0.5">Tienda</span>
+          </Link>
+
+          <Link to="/recetas" className={`flex flex-col items-center justify-center transition-all ${location.pathname === '/recetas' ? 'text-emerald-600 font-bold scale-105' : 'text-stone-400'}`}>
+            <span className="material-symbols-outlined text-xl">menu_book</span>
+            <span className="text-[10px] tracking-tight mt-0.5">Recetas</span>
+          </Link>
+        </nav>
+      )}
         
     </div>
   )

@@ -47,7 +47,7 @@ export default function GetPorID() {
                         type="submit"
                         className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-md flex items-center justify-center"
                     >
-                        <span className="material-symbols-outlined">buscar</span>
+                        <span className="material-symbols-outlined">shear</span>
                     </button>
                 </div>
 

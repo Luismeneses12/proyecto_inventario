@@ -8,6 +8,7 @@ import IngresarRecetas from './IngresarRecetas'
 import GetPorID from './GetPorID'
 import ActualizacionProductos from './ActualizacionProductos'
 import Eliminarproducto from './Eliminarproducto'
+import EliminarRecetas from './EliminarRecetas'
 
 
 export default function Bienvenida() {
@@ -239,7 +240,7 @@ export default function Bienvenida() {
             {seccionActiva === 'elim-prod' && <div className="bg-white p-8 rounded-2xl border border-stone-200/60 shadow-sm"><Eliminarproducto /></div>}
             {seccionActiva === 'buscar-id' && <div className="bg-white p-8 rounded-2xl border border-stone-200/60 shadow-sm"><GetPorID /></div>}
             {seccionActiva === 'post-rece' && <div className="bg-white p-8 rounded-2xl border border-stone-200/60 shadow-sm"><IngresarRecetas /></div>}
-          {/*   {seccionActiva === 'elim-rece' && <div className="bg-white p-8 rounded-2xl border border-stone-200/60 shadow-sm"><EliminarRecetas /></div>} */ } 
+            {seccionActiva === 'elim-rece' && <div className="bg-white p-8 rounded-2xl border border-stone-200/60 shadow-sm"><EliminarRecetas /></div>} 
           </div>
 
         </div>
